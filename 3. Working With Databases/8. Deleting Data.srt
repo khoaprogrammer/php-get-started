@@ -1,0 +1,204 @@
+1
+00:00:02,000 --> 00:00:11,000
+The sole missing important database operation is deleting. So we need an sql DELETE statement.
+
+2
+00:00:11,000 --> 00:00:18,000
+And that's it, we put together the statement, once again, taking extra care of escaping special characters
+
+3
+00:00:18,000 --> 00:00:27,000
+so that no one can enter something we do not want. We use mysqli_real_escape_string, and finally send the
+
+4
+00:00:27,000 --> 00:00:37,000
+SQL statement with the sanitized data to the database. Deleting is always tricky because you have also to
+
+5
+00:00:37,000 --> 00:00:47,000
+make sure that only the right people can actually access the PHP script that deletes information.
+
+6
+00:00:47,000 --> 00:00:52,000
+In our example, of course, it's simple. We are the only user, we are the administrator, and it runs on our
+
+7
+00:00:52,000 --> 00:00:59,000
+local system, so we are good so far, but of course, in the real world you might want to give some additional
+
+8
+00:00:59,000 --> 00:01:04,000
+protection to that script, for instance, password protection or something else.
+
+9
+00:01:04,000 --> 00:01:11,000
+But, basically, the actual process of deleting information is just sending a DELETE statement to database.
+
+10
+00:01:11,000 --> 00:01:16,000
+So let's finish up our little project.
+
+11
+00:01:16,000 --> 00:01:22,000
+An implementation of deletion is usually quite a bit of work because you have to make sure that the user
+
+12
+00:01:22,000 --> 00:01:30,000
+really wants to delete a record, so you have to add a kind of, are you sure, yes, no screen.
+
+13
+00:01:30,000 --> 00:01:36,000
+Also, you will need to make sure that the user can only delete those records that the user is allowed to
+
+14
+00:01:36,000 --> 00:01:42,000
+delete. You have to make sure that no one from the outside can actually trigger the deletion.
+
+15
+00:01:42,000 --> 00:01:50,000
+We do a very, very simple implementation. The simple implementation just rounds up what we've done so far
+
+16
+00:01:50,000 --> 00:01:56,000
+when working with databases, however, in the real world you need to add some extra safeguards just as a
+
+17
+00:01:56,000 --> 00:02:03,000
+disclaimer at the very beginning. But now let's start with the page, I add a new PHP File, I call it
+
+18
+00:02:03,000 --> 00:02:15,000
+delete.php because we will have to use the delete SQL statement. I will add some basic html in here, so I
+
+19
+00:02:15,000 --> 00:02:22,000
+just add our PHP title, and then I have a body section, and well, basically that's it.
+
+20
+00:02:22,000 --> 00:02:30,000
+We won't have that much of a layout, however, what we will want to do is we want to call this page using
+
+21
+00:02:30,000 --> 00:02:40,000
+delete.php?id=5, and then record that the id 5 shall be deleted. So as before with the UPDATE script, we
+
+22
+00:02:40,000 --> 00:02:46,000
+need to find out whether actually we get an id as part of the URL, and we do that at the very beginning.
+
+23
+00:02:46,000 --> 00:02:58,000
+So we just do an if (isset($_GET('id')), so if the value is set, and if it consists of only digits,
+
+24
+00:02:58,000 --> 00:03:06,000
+so if it's ctype_digit($_GET('id')), and then we can, well, later delete the information.
+
+25
+00:03:06,000 --> 00:03:16,000
+For now we just store it in a variable, so $id = $_GET of 'id'. Otherwise, we redirect to the old view page
+
+26
+00:03:16,000 --> 00:03:25,000
+as we did before. So 'Location: select.php'. Alright, now the variable is set, and in here, because I'd
+
+27
+00:03:25,000 --> 00:03:32,000
+like to output that the record has been deleted. If we delete it, we can then use this id variable because
+
+28
+00:03:32,000 --> 00:03:39,000
+if we come so far, it definitely has been set. Now let's once again connect to the database, so
+
+29
+00:03:39,000 --> 00:03:48,000
+mysqli_connect to the 'localhost', using our 'root' user, and accessing the php database.
+
+30
+00:03:48,000 --> 00:04:03,000
+How does the SQL statement look like this time? Well, I just do a DELETE FROM users WHERE id=, and now I
+
+31
+00:04:03,000 --> 00:04:11,000
+can, and this really is an exception, now I can really put the id variable in here.
+
+32
+00:04:11,000 --> 00:04:18,000
+I have double quotes, and if I use a variable name within double quotes, the variable name is replaced by
+
+33
+00:04:18,000 --> 00:04:25,000
+the value of the variable. I have checked before that $id only consists of digits, so there's no SQL
+
+34
+00:04:25,000 --> 00:04:30,000
+injection in here. This is one of the very, very few cases where I don't have to escape using
+
+35
+00:04:30,000 --> 00:04:41,000
+mysqli_real_escape_string. And now I'll send this to the server using mysqli_query, and echo out how happy
+
+36
+00:04:41,000 --> 00:04:51,000
+I am that it all worked hopefully, User deleted, and finally I can close the connection again.
+
+37
+00:04:51,000 --> 00:05:00,000
+So it's a rather short script, and whenever I'm calling now, let's say delete.php?id=1, I will
+
+38
+00:05:00,000 --> 00:05:11,000
+delete the record with the id 1. Again, this is not a very secure way of doing that, there is no, are you
+
+39
+00:05:11,000 --> 00:05:16,000
+sure, yes, no. If someone triggers me, for instance, by sending a link, but there are other possibilities
+
+40
+00:05:16,000 --> 00:05:26,000
+to run this script, then I just delete an entry. But in order, as I mentioned, to round up the example,
+
+41
+00:05:26,000 --> 00:05:32,000
+this is a very brief way of doing deletion, but usually when you delete you have to add some additional
+
+42
+00:05:32,000 --> 00:05:41,000
+checks, of course. Now, again, same as with the update script, it's probably a good way to directly link
+
+43
+00:05:41,000 --> 00:05:48,000
+to that delete.php script with the correct id, so let's go to the overview page again and add, after the
+
+44
+00:05:48,000 --> 00:05:59,000
+edit link, a delete link as well. I'll just put this in a new line, and this time I call it delete,
+
+45
+00:05:59,000 --> 00:06:14,000
+and it goes to delete.php, however, the argument which I am providing is still the same, so $row of 'id'.
+
+46
+00:06:14,000 --> 00:06:21,000
+So, once again, we changed the overview page, linking to delete.php using the correct id query string value,
+
+47
+00:06:21,000 --> 00:06:28,000
+and in delete.php we do delete the record.
+
+48
+00:06:28,000 --> 00:06:37,000
+Here is the old overview page. Let's reload it. After reloading, we now have a delete link here.
+
+49
+00:06:37,000 --> 00:06:42,000
+Sorry debbie, it's nothing personal, but I'll go here, User deleted.
+
+50
+00:06:42,000 --> 00:06:50,000
+So if I go back to the overview page, reload it, debbie is gone, only one record left in my database, so the
+
+51
+00:06:50,000 --> 00:59:00,000
+script worked as expected.
+

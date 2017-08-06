@@ -1,0 +1,156 @@
+1
+00:00:01,000 --> 00:00:13,000
+Hi, and welcome to Working With Forms. Forms are the only way in HTML that offers users to actually
+
+2
+00:00:13,000 --> 00:00:19,000
+communicate with the website, input data, and so on. The only other means we have for that is following a
+
+3
+00:00:19,000 --> 00:00:25,000
+link, but of course that's not very interesting from an information-gathering perspective.
+
+4
+00:00:25,000 --> 00:00:33,000
+So we will have a look at forms. We will first cover the basics, so how does a form look like in HTML,
+
+5
+00:00:33,000 --> 00:00:38,000
+a very brief look at the most important form elements, but before that a look at HTTP.
+
+6
+00:00:38,000 --> 00:00:45,000
+What happens if we do submit a form, what happens if we an HTTP request?
+
+7
+00:00:45,000 --> 00:00:52,000
+Then we will move on to PHP and we will have a look at how we process form data, so how we can get the form
+
+8
+00:00:52,000 --> 00:01:00,000
+data from the HTTP request and also later how we validate a form, so how we can make sure that all mandatory
+
+9
+00:01:00,000 --> 00:01:08,000
+fields are filled out and that all fields contain valid data, and if that does not work, how we prefill
+
+10
+00:01:08,000 --> 00:01:13,000
+form elements with previous validators, so quite a lot to cover.
+
+11
+00:01:13,000 --> 00:01:20,000
+Let's dive right in. In HTML we have the &lt;form tag, and the form tag has a couple of attributes.
+
+12
+00:01:20,000 --> 00:01:27,000
+The two most important ones are first the action, so the target of the form submit.
+
+13
+00:01:27,000 --> 00:01:33,000
+If we set it to a blank string, it's the current page, that's the pattern we will use in this module, by the way.
+
+14
+00:01:33,000 --> 00:01:39,000
+And the second important attribute of the form tag in HTML is the method attribute.
+
+15
+00:01:39,000 --> 00:01:50,000
+The method attribute holds the HTTP verb, or the HTTP method. The HTTP specification defines quite a lot
+
+16
+00:01:50,000 --> 00:01:59,000
+of those verbs, of those methods, PUT, DELETE, HAD, OPTION, TRACE, and so on, but the two most important
+
+17
+00:01:59,000 --> 00:02:07,000
+ones are GET and POST. Now the default HTTP verb is GET. You will have taht when you follow a regular link
+
+18
+00:02:07,000 --> 00:02:18,000
+for instance. If you submit any data with that request or if you submit a form using HTTP GET, the form
+
+19
+00:02:18,000 --> 00:02:25,000
+data is appended to the URL. So if a question mark and the name equals value, and name equals value, and so on
+
+20
+00:02:25,000 --> 00:02:31,000
+and so forth. Obviously there is a size limit to those URLs. There is a size limit in the web browser,
+
+21
+00:02:31,000 --> 00:02:39,000
+there is a size limit in the web server, there may also be a size limit in the proxy that's between browser
+
+22
+00:02:39,000 --> 00:02:46,000
+and server, so you may not want to make the URL there very long. So for most forms, except for simple
+
+23
+00:02:46,000 --> 00:02:54,000
+search forms, usually we do not use GET. However, if we use GET, we have a PHP array, $_GET, which holds
+
+24
+00:02:54,000 --> 00:03:02,000
+all values and lets regular variables _____ arrays also available within PHP functions without any need
+
+25
+00:03:02,000 --> 00:03:11,000
+to use the global keyword to import it in the function _____. The second most important HTTP verb or HTTP
+
+26
+00:03:11,000 --> 00:03:19,000
+method is POST. In POST we do not have that size limit. We could even send files, we can have file uploads
+
+27
+00:03:19,000 --> 00:03:27,000
+when we use POST. POST doesn't put data at the end of the URL, but instead if we have HTTP headers and then
+
+28
+00:03:27,000 --> 00:03:34,000
+a blank line, we have the actual body of the HTTP request and that one will hold the POST data.
+
+29
+00:03:34,000 --> 00:03:40,000
+There are several ways how to encode the data in the request, but the default it's name = value, and
+
+30
+00:03:40,000 --> 00:03:46,000
+name = value, etc., just like with GET, however, in the HTTP body, and not in the URL.
+
+31
+00:03:46,000 --> 00:03:51,000
+The appropriate PHP array that holds all of the data is $_POST.
+
+32
+00:03:51,000 --> 00:03:59,000
+Let's have a look at how these requests look like. First there is a GET request, so we have the URL.
+
+33
+00:03:59,000 --> 00:04:06,000
+And as you can see at the end of the URL there are several name value paths.
+
+34
+00:04:06,000 --> 00:04:11,000
+We can only see the first few of them because the line is so long so it got cut, but that's the most
+
+35
+00:04:11,000 --> 00:04:17,000
+important part of the GET request. After that you will see a couple of additional headers, for instance,
+
+36
+00:04:17,000 --> 00:04:23,000
+headers that show which browser we are using, which language setting we have in our browser, where we come
+
+37
+00:04:23,000 --> 00:04:31,000
+from, let's refer a header, etc., etc. For our POST request, as you can see we do not have any information appended
+
+38
+00:04:31,000 --> 00:04:37,000
+to the URL. We have more or less the same set of headers, however, at the end of the headers we have a blank
+
+39
+00:04:37,000 --> 00:59:00,000
+line and afterwards we have our Name value fields, so that's basically how HTTP GET and HTTP POST may look like.
+

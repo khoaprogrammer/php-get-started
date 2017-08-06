@@ -1,0 +1,132 @@
+1
+00:00:03,000 --> 00:00:12,000
+If you read through the HTTP specification, you will see that HTTP is a so-called stateless protocol.
+
+2
+00:00:12,000 --> 00:00:19,000
+So basically HTTP doesn't remember a thing, however, in web applications we have to remember a lot of
+
+3
+00:00:19,000 --> 00:00:25,000
+information, for instance, what has the user done so far and which user is it anyway,
+
+4
+00:00:25,000 --> 00:00:32,000
+state information, language settings, and so on, and so forth. So an important topic for web-based
+
+5
+00:00:32,000 --> 00:00:39,000
+programming is state management. We need a mechanism to store information across requests, and there are
+
+6
+00:00:39,000 --> 00:00:48,000
+several ways of doing that, and what php offers among other things, is to use a so-called session which
+
+7
+00:00:48,000 --> 00:00:56,000
+uses in turn, cookies. The server sends a cookie with a unique identifier, usually a long string consisting
+
+8
+00:00:56,000 --> 00:01:05,000
+of digits and lowercase letters, to the browser, and the browser then stores this cookie information and
+
+9
+00:01:05,000 --> 00:01:10,000
+on all subsequent requests, that cookie value is sent back to the server.
+
+10
+00:01:10,000 --> 00:01:19,000
+So basically we get a session id, say, abc12345, and with each and every request to the server we send this id,
+
+11
+00:01:19,000 --> 00:01:26,000
+abc12345, back. So the server might not know who we are, but the server always knows, ah, that's user
+
+12
+00:01:26,000 --> 00:01:35,000
+abc12345, so let's store some data on our server-side database or in the file system about abc12345.
+
+13
+00:01:35,000 --> 00:01:42,000
+And if we eventually login, then the server knows, okay, that's user xyz, and the session id of user xyz is
+
+14
+00:01:42,000 --> 00:01:50,000
+abc12345. There are many implementation details about PHP doing specifically on the server, and what
+
+15
+00:01:50,000 --> 00:01:57,000
+happens on the client, but so far, for us, from a programming perspective, there are only a few things we
+
+16
+00:01:57,000 --> 00:02:01,000
+need to know. First of all is, how can we activate that session support?
+
+17
+00:02:01,000 --> 00:02:10,000
+Sessions are activated by default, and available in PHP without any further configuration.
+
+18
+00:02:10,000 --> 00:02:17,000
+However, this session cookie is not automatically being sent from the server to the client.
+
+19
+00:02:17,000 --> 00:02:23,000
+We have to instruct PHP to do so, and we do that by calling a function called session_start, which among
+
+20
+00:02:23,000 --> 00:02:31,000
+other things sends the cookie. There are other technical options as well, but by default it's a cookie.
+
+21
+00:02:31,000 --> 00:02:39,000
+Of course, a cookie is an HTTP header, so we have to call session_start before any HTML output is sent to
+
+22
+00:02:39,000 --> 00:02:47,000
+the client, just to be on the safe side. So session_start starts the session support, sends the cookie,
+
+23
+00:02:47,000 --> 00:02:51,000
+checks if a cookie has been sent as part of the HTTP request, and so on, and so forth.
+
+24
+00:02:51,000 --> 00:02:55,000
+So it sets everything up for us. We do not have to do a thing.
+
+25
+00:02:55,000 --> 00:03:03,000
+The only thing we have to do is to access the superglobal $_SESSION array, which is an array like $_GET,
+
+26
+00:03:03,000 --> 00:03:13,000
+$_POST. It's available everywhere, however, the nice thing is we can just write to it and read to it.
+
+27
+00:03:13,000 --> 00:03:19,000
+This actually triggers quite a bit of work in the background, so for instance, PHP has to find out which
+
+28
+00:03:19,000 --> 00:03:26,000
+session we have, and has to store the data at the right place. If you read out $_SESSION, PHP has to retrieve
+
+29
+00:03:26,000 --> 00:03:32,000
+the information on the server from the right spot. Essentially what we are only doing is we work with an
+
+30
+00:03:32,000 --> 00:03:38,000
+array. We store data in the array, and then on the next page, if we again use session_start, the array is
+
+31
+00:03:38,000 --> 00:03:45,000
+still there, so we can memorize information, for instance, which user is currently logged in, and so on,
+
+32
+00:03:45,000 --> 00:03:53,000
+and so forth. So a very convenient mechanism which requires minimal work for us, and a bit of work from PHP,
+
+33
+00:03:53,000 --> 00:59:00,000
+but well, that's what we have PHP for, right?
+

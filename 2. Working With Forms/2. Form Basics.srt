@@ -1,0 +1,100 @@
+1
+00:00:03,000 --> 00:00:10,000
+After we have covered all those basics, now let's have a look at all those form elements HTML is providing
+
+2
+00:00:10,000 --> 00:00:18,000
+for us, and how we can use them from PHP. First you see several types of text fields.
+
+3
+00:00:18,000 --> 00:00:25,000
+There is a single-line text field, there is a password field, which essentially is a single-line text field,
+
+4
+00:00:25,000 --> 00:00:34,000
+but the input is masked, and there is a multi-line text field. We have the input HTML element for most of
+
+5
+00:00:34,000 --> 00:00:44,000
+form elements. One of the very few exceptions is the multi-line text field, which is done via the text area tag.
+
+6
+00:00:44,000 --> 00:00:53,000
+So basically we have several fields, several HTML form types, and each of them should have the name attribute
+
+7
+00:00:53,000 --> 00:01:00,000
+set because we will use the name there later to access the value in those fields.
+
+8
+00:01:00,000 --> 00:01:08,000
+Next up we have radio buttons and checkboxes. So a checkbox is just input type= "checkbox" with, of course,
+
+9
+00:01:08,000 --> 00:01:16,000
+again a name and a value. And as we'll see later, if the checkbox is activated, the value is sent to the
+
+10
+00:01:16,000 --> 00:01:25,000
+server. If not, then nothing is sent to the server. But more interesting are radio buttons, because radio
+
+11
+00:01:25,000 --> 00:01:31,000
+buttons always occur in groups. There is a group of radio buttons, and you can only select one of those
+
+12
+00:01:31,000 --> 00:01:38,000
+radio buttons at a time. In order to do that, you have to tell the browser which of the radio buttons on the
+
+13
+00:01:38,000 --> 00:01:42,000
+page are in the same group. You do this by using the name attribute.
+
+14
+00:01:42,000 --> 00:01:49,000
+All radio buttons that have the same name attribute are part of the same group.
+
+15
+00:01:49,000 --> 00:01:55,000
+So how do you distinguish the individual radio buttons? Well there still is the value attribute, and the
+
+16
+00:01:55,000 --> 00:02:02,000
+value attribute needs to be different. So if you have a group of radio buttons, the value of the radio
+
+17
+00:02:02,000 --> 00:02:08,000
+button that has been selected is sent to the server, or the other radio buttons are kind of ignored from a
+
+18
+00:02:08,000 --> 00:02:14,000
+server point of view. And finally, we will later have a look at selection lists.
+
+19
+00:02:14,000 --> 00:02:24,000
+So we have the select HTML form element, and each individual entry in that list is put into HTML using the
+
+20
+00:02:24,000 --> 00:02:32,000
+option tag or the option element. You have a caption for each element that's within the option tag, but you
+
+21
+00:02:32,000 --> 00:02:39,000
+also have a value. Quite often, actually, the value is the same as the caption, however, the value is what
+
+22
+00:02:39,000 --> 00:02:46,000
+is being sent back to the server, the caption isn't. The only exception, if there is no value at all, then
+
+23
+00:02:46,000 --> 00:02:53,000
+the caption is sent to the server. There are other form elements in HTML.
+
+24
+00:02:53,000 --> 00:02:59,000
+Actually we will see one of them a bit later on, a button because we have to submit the form somehow, but
+
+25
+00:02:59,000 --> 00:59:00,000
+basically these are the ones you'll see and use most often in the web.
+

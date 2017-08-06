@@ -1,0 +1,76 @@
+1
+00:00:02,000 --> 00:00:08,000
+We continue with the next type of fields, the radio buttons and checkboxes.
+
+2
+00:00:08,000 --> 00:00:15,000
+Now for those we first have to find out whether they have been activated when the form was submitted.
+
+3
+00:00:15,000 --> 00:00:21,000
+It's a bit easier for the checkbox, it's a bit more complicated for the radio buttons because we have several
+
+4
+00:00:21,000 --> 00:00:25,000
+radio buttons. We need to find out which one has been activated, if any.
+
+5
+00:00:25,000 --> 00:00:32,000
+Then if we have found it out we have to make sure that using HTML means those are activated again.
+
+6
+00:00:32,000 --> 00:00:42,000
+The HTML attribute we need to use here is called checked. We go back to the code.
+
+7
+00:00:42,000 --> 00:00:52,000
+Let's start with the checkbox at the very end, and if the checkbox has been selected, we need to add checked
+
+8
+00:00:52,000 --> 00:01:00,000
+but when do we add checked? Well, if we add it if the value of $tc, remember the variable that holds the
+
+9
+00:01:00,000 --> 00:01:09,000
+current value of the checkbox = "ok". So, once again, it's time for a php block in here, and in that php
+
+10
+00:01:09,000 --> 00:01:22,000
+block all we are doing is if $tc === 'ok', then we just echo out checked.
+
+11
+00:01:22,000 --> 00:01:31,000
+And I also echo out a blank space character so that it nicely fits into the HTML markup.
+
+12
+00:01:31,000 --> 00:01:38,000
+And this very approach is the same we will be doing for the radio buttons up here, same thing.
+
+13
+00:01:38,000 --> 00:01:51,000
+We add a php block, and in that php block, after I re-fix the indentation, we have a look at this time the
+
+14
+00:01:51,000 --> 00:01:55,000
+gender variable, remember that will be set with the input in the gender field.
+
+15
+00:01:55,000 --> 00:02:06,000
+And if the gender variable has a value of, in that case, f for female, we echo out checked, as simple as that.
+
+16
+00:02:06,000 --> 00:02:10,000
+Otherwise, we don't do anything and the radio button is not pre-checked.
+
+17
+00:02:10,000 --> 00:02:21,000
+Same thing here, so I add a new php block and in that php block I do essentially the same thing as before,
+
+18
+00:02:21,000 --> 00:02:33,000
+so I do an if $gender ===, and in that case 'm' for male, and if so, I echo ' checked'.
+
+19
+00:02:33,000 --> 00:59:00,000
+And now this field is also properly prefilled, if it has been prefilled before, so far, so good.
+

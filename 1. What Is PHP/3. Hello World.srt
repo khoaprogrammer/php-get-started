@@ -1,0 +1,344 @@
+1
+00:00:02,000 --> 00:00:11,000
+In order to produce a working PHP application, we both need a working setup, and of course, working code.
+
+2
+00:00:11,000 --> 00:00:19,000
+Let's start with the setup. Now we already have a web server, and the web server runs with PHP.
+
+3
+00:00:19,000 --> 00:00:27,000
+Then we will eventually write PHP code and usually that PHP code is put within HTML files.
+
+4
+00:00:27,000 --> 00:00:35,000
+so we have regular HTML pages, and wherever we think that PHP is needed, for instance, to create a database
+
+5
+00:00:35,000 --> 00:00:44,000
+or to output the current date, we just put in the PHP code. As applications get larger and we separate them
+
+6
+00:00:44,000 --> 00:00:52,000
+into individual modules that are reusable, those modules very often are purely PHP.
+
+7
+00:00:52,000 --> 00:01:01,000
+So we can also have files which only contain PHP code. So both approaches exist and it's a matter of the
+
+8
+00:01:01,000 --> 00:01:09,000
+size of the application, personal preference, etc., so there is no wrong way of doing things and there is not
+
+9
+00:01:09,000 --> 00:01:19,000
+just one way of doing the right thing. Once this setup has been created and we know that we either have an
+
+10
+00:01:19,000 --> 00:01:26,000
+HTML page, where we need to put PHP into or we have PHP files, we have to take care about the file
+
+11
+00:01:26,000 --> 00:01:33,000
+extension. The file extension used by PHP by default is .php, and that's also the way XAMPP and the other
+
+12
+00:01:33,000 --> 00:01:39,000
+installers and the PHP website's installation instructions are set up.
+
+13
+00:01:39,000 --> 00:01:49,000
+So by default, files which have the .php extension are processed by the web server so that the PHP code is
+
+14
+00:01:49,000 --> 00:01:59,000
+actually running. We could change that, but that's the way everybody is using that, even Facebook.
+
+15
+00:01:59,000 --> 00:02:08,000
+For writing the PHP code, we need an editor or an IDE. Since PHP files are text files, any text editor will
+
+16
+00:02:08,000 --> 00:02:17,000
+do, as any text editor will do for HTML pages. However, of course, a more advanced editor that maybe
+
+17
+00:02:17,000 --> 00:02:27,000
+supports PHP and gives us syntax highlighting for PHP is beneficial in order to make less mistakes.
+
+18
+00:02:27,000 --> 00:02:31,000
+Now the editor of choice, of course, is a matter of personal preference.
+
+19
+00:02:31,000 --> 00:02:38,000
+You will have your preferences and I have mine. The editor I'm using for creating PHP content and PHP
+
+20
+00:02:38,000 --> 00:02:45,000
+applications is a product called PhpStorm by a company called JetBrains.
+
+21
+00:02:45,000 --> 00:02:53,000
+This is a commercial editor, so there is a free version that only runs for a certain amount of time, and I
+
+22
+00:02:53,000 --> 00:02:59,000
+was very happily paying for that editor, but do not think that you need that editor in order to follow along
+
+23
+00:02:59,000 --> 00:03:04,000
+for this course. It's just a personal preference. You can use your editor of choosing, preferably the
+
+24
+00:03:04,000 --> 00:03:10,000
+editor you are using for your HTML content, as long as the editor boasts some PHP support,
+
+25
+00:03:10,000 --> 00:03:17,000
+this really helps things, but again, you can pick whatever editor you want, as long as you can create text
+
+26
+00:03:17,000 --> 00:03:27,000
+files with PHP in it. Now, in those files may be an HTML file or may be a purely PHP file.
+
+27
+00:03:27,000 --> 00:03:35,000
+We need the .php file extension and then we can put code in.
+
+28
+00:03:35,000 --> 00:03:42,000
+Let's do this right away. I'm here in the htdocs folder of the xampp installation, that's the base folder
+
+29
+00:03:42,000 --> 00:03:51,000
+for the web server. And I create here a new folder for us called php-get-started, so when going to
+
+30
+00:03:51,000 --> 00:04:02,000
+localhost/php-get-started, we get to the files we are about to create in our editor.
+
+31
+00:04:02,000 --> 00:04:09,000
+Here's my editor, PhpStorm, the php-get-started folder we just created already open, and I can add here a new
+
+32
+00:04:09,000 --> 00:04:18,000
+file, for instance, an HTML File. However, that specific editor, when adding the HTML File uses the .html
+
+33
+00:04:18,000 --> 00:04:25,000
+file extension and we need the .php file extension, so I'm using a PHP File.
+
+34
+00:04:25,000 --> 00:04:38,000
+I name it helloworld.php and you already see here in the template that's used, a specific syntax token,&lt;?php.
+
+35
+00:04:38,000 --> 00:04:47,000
+This is a sign for PHP running on the server that PHP code is following, so PHP on the server knows,
+
+36
+00:04:47,000 --> 00:04:53,000
+okay, this is not HTML here, this is PHP code, and we can mix those.
+
+37
+00:04:53,000 --> 00:05:01,000
+So what we can do is we can create a simple HTML page here and then add PHP to the mix.
+
+38
+00:05:01,000 --> 00:05:10,000
+I'll do this right away. So I'll start with the HTML DOCTYPE, I add an &lt;html&gt; element, in the &lt;html&gt;
+
+39
+00:05:10,000 --> 00:05:15,000
+element I have a &lt;head&gt; section with a &lt;title&gt; for the page, and I have a &lt;body&gt; section.
+
+40
+00:05:15,000 --> 00:05:21,000
+And in the body section usually I would do something like this. I have a paragraph, and in the paragraph I
+
+41
+00:05:21,000 --> 00:05:36,000
+would say Hello World! However, since I want to use PHP, I can add PHP code in here, so I use &lt;?php, and
+
+42
+00:05:36,000 --> 00:05:44,000
+everything following is PHP code, until the PHP code ends with ? and closing angle bracket, which was added
+
+43
+00:05:44,000 --> 00:05:55,000
+here automatically by the IDE. So everything between here and here is PHP code.
+
+44
+00:05:55,000 --> 00:06:03,000
+Now let's write some simple PHP code, and probably the easiest way of outputting something with PHP is by
+
+45
+00:06:03,000 --> 00:06:15,000
+the echo command and as an argument for the echo command we then use a simple string, which is then output
+
+46
+00:06:15,000 --> 00:06:25,000
+into the HTML and later sent to the browser. So we use a simple string, for instance, "Hello World!", so same
+
+47
+00:06:25,000 --> 00:06:34,000
+as before. We have to end this with a semi-colon, and that's it, we have a simple HTML page, and the HTML
+
+48
+00:06:34,000 --> 00:06:44,000
+page contains a PHP section, and in the PHP section we have echo "Hello World!" as our first and very, very
+
+49
+00:06:44,000 --> 00:06:56,000
+simple PHP code. Let's run this in the browser. So we go to localhost/php-get-started, that's the name of
+
+50
+00:06:56,000 --> 00:07:03,000
+our folder, and then helloworld that's the name of our file, and we see Hello World!, which might not look
+
+51
+00:07:03,000 --> 00:07:12,000
+that impressive, however, if we have a look at the page source, we see indeed Hello World.
+
+52
+00:07:12,000 --> 00:07:18,000
+We do not see that there has been any PHP code, because the PHP code was run on the server.
+
+53
+00:07:18,000 --> 00:07:31,000
+The browser just receives the end result, Hello World!, there's no &lt;?php, there is no echo, just the result.
+
+54
+00:07:31,000 --> 00:07:43,000
+So we saw that PHP code is delimited by &lt;?php and ?&gt;, the code is output exactly where we put it in the HTML
+
+55
+00:07:43,000 --> 00:07:51,000
+page, and we saw echo. However, this was a traditional Hello World? with simple text.
+
+56
+00:07:51,000 --> 00:08:02,000
+We can do better. I create a new file, and this time I call the file phpinfo.php.
+
+57
+00:08:02,000 --> 00:08:10,000
+Of course, the name is arbitrary, but I have something specific in mind, and this file just consists of
+
+58
+00:08:10,000 --> 00:08:28,000
+&lt;?php block, and in it I call phpinof(); and I'm done. In the browser, I go to that page, and you've seen
+
+59
+00:08:28,000 --> 00:08:34,000
+the page is really simple, just one command, phpinfo, I mean what could the output possibly be of that simple
+
+60
+00:08:34,000 --> 00:08:43,000
+command. Well actually, quite a lot. We get a very long page consisting of a lot of information about
+
+61
+00:08:43,000 --> 00:08:51,000
+the installation. We see the PHP Version number, we see information about the system we are using, the grading
+
+62
+00:08:51,000 --> 00:08:59,000
+system, the build date, even, of PHP, and if I scroll through it we see configuration, for instance, the
+
+63
+00:08:59,000 --> 00:09:08,000
+Apache configuration, so the configuration of the web server, and we also see which extensions to PHP are
+
+64
+00:09:08,000 --> 00:09:14,000
+installed, so which additional features are installed. For instance, there is something called bz2, which
+
+65
+00:09:14,000 --> 00:09:23,000
+has to do with file compression. We see further down curl, which is a very popular tool to do HTTP requests
+
+66
+00:09:23,000 --> 00:09:29,000
+We see a date extension, which lets us handle date and time information.
+
+67
+00:09:29,000 --> 00:09:37,000
+We see exif, which is used by digital cameras, and the image is produced by digital cameras, so that's
+
+68
+00:09:37,000 --> 00:09:46,000
+metadata, and so on and so forth. A lot of stuff coming up, mysql, mysqli, some of this has to do with data base access, and so on and
+
+69
+00:09:46,000 --> 00:09:55,000
+so forth, a very, very long page, and finally credits. So a lot of information just by using this one
+
+70
+00:09:55,000 --> 00:10:00,000
+command, phpinfo.
+
+71
+00:10:00,000 --> 00:10:05,000
+I like to call this the luxury version of "Hello World!", because it essentially is Hello World.
+
+72
+00:10:05,000 --> 00:10:11,000
+Traditionally, Hello World! is being used in order to just check whether the system works and whether we
+
+73
+00:10:11,000 --> 00:10:17,000
+can run programs. so we could do a Hello World! like we did before, however, the phpinfo "Hello World!"
+
+74
+00:10:17,000 --> 00:10:24,000
+not only proves that the system is running, it also tells us how the system is running, how it is configured.
+
+75
+00:10:24,000 --> 00:10:31,000
+On our own system, it's just a way to have a look whether we configured it correctly, whether all
+
+76
+00:10:31,000 --> 00:10:37,000
+extensions we're using are properly loaded, etc., on our hosted system.
+
+77
+00:10:37,000 --> 00:10:43,000
+It's even more convenient because we see how the host configured the system, we see whether the host
+
+78
+00:10:43,000 --> 00:10:49,000
+has installed and configured all of the extensions they promised they would do.
+
+79
+00:10:49,000 --> 00:10:53,000
+We also see if there are any additional features installed which we might be able to use.
+
+80
+00:10:53,000 --> 00:10:58,000
+So it's very, very convenient having looked at the phpinfo output.
+
+81
+00:10:58,000 --> 00:11:04,000
+Of course we shouldn't put it on a public facing page and even link it, because other people might also be
+
+82
+00:11:04,000 --> 00:11:10,000
+interested in the information, it's just for us so when you have a new hosting partner, create a phpinfo
+
+83
+00:11:10,000 --> 00:11:17,000
+file, put it on the web server, run it, save and print the output, and then you can remove the file again,
+
+84
+00:11:17,000 --> 00:11:25,000
+but we just see that way which PHP version we have, which also is an important piece of information, and
+
+85
+00:11:25,000 --> 00:11:32,000
+also the configuration and what's installed, so super useful, and Hello World! version that's so much
+
+86
+00:11:32,000 --> 00:59:00,000
+better than just outputting some text.
+

@@ -1,0 +1,80 @@
+1
+00:00:03,000 --> 00:00:11,000
+I have already prepared an HTML form for us to play with. This form contains those HTML elements I mentioned,
+
+2
+00:00:11,000 --> 00:00:15,000
+and also one or two special items, which we'll talk about a bit later.
+
+3
+00:00:15,000 --> 00:00:23,000
+So here is the markup of that form. It's a PHP file, because we later want to add the PHP code, of course,
+
+4
+00:00:23,000 --> 00:00:31,000
+but at the moment it only contains HTML markup. It contains a form and use http POST as a method.
+
+5
+00:00:31,000 --> 00:00:37,000
+You could also use GET, of course, but we'll use POST this time. The action is set to an empty string so
+
+6
+00:00:37,000 --> 00:00:44,000
+that if the form is submitted back to the server the same script is run as the one that produces the form,
+
+7
+00:00:44,000 --> 00:00:51,000
+so it's form.php, that's exactly what we want. We then have a single-line text input field, a single-line
+
+8
+00:00:51,000 --> 00:00:58,000
+password field. We have to radio buttons in the same group for the gender of a person.
+
+9
+00:00:58,000 --> 00:01:06,000
+Then we have a selection list with three items to choose from. By default, that's a dropdown list.
+
+10
+00:01:06,000 --> 00:01:12,000
+We also have a multiple-selection list where users can select more than one entry.
+
+11
+00:01:12,000 --> 00:01:19,000
+We also have a multi-line text input, the text area here, we have a checkbox to accept the terms and
+
+12
+00:01:19,000 --> 00:01:24,000
+conditions, and finally, we have a new HTML form element we didn't cover before,
+
+13
+00:01:24,000 --> 00:01:29,000
+we have input type="submit", which essentially is a submit button.
+
+14
+00:01:29,000 --> 00:01:36,000
+So once we click on that button, the form data, the input of the user, is sent to the server where we will
+
+15
+00:01:36,000 --> 00:01:42,000
+eventually process those data.
+
+16
+00:01:42,000 --> 00:01:49,000
+And this is how the form looks in a web browser. So we see the text field, we see the password field, the
+
+17
+00:01:49,000 --> 00:01:56,000
+radio buttons, the drop-down list, the multiple-selection list, we see the Comments field, and we see the
+
+18
+00:01:56,000 --> 00:02:00,000
+checkbox. Finally we have a Submit button to send the data back to the server.
+
+19
+00:02:00,000 --> 00:02:06,000
+Then on the server we, of course, would like to process the data, for instance, validate it or just output
+
+20
+00:02:06,000 --> 00:59:00,000
+it, kind of a form Hello World!, and that's what we are about to do right now.
+

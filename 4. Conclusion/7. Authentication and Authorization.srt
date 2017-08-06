@@ -1,0 +1,236 @@
+1
+00:00:02,000 --> 00:00:09,000
+Let's finish our sample application, especially the login page. First of all, I'd like to have the navigation
+
+2
+00:00:09,000 --> 00:00:17,000
+on the login page as well, so readfile, and then our 'navigation.tmpl.html' page.
+
+3
+00:00:17,000 --> 00:00:25,000
+But, of all the features I like to add, I'd really like to finish the login mechanism.
+
+4
+00:00:25,000 --> 00:00:30,000
+So far we only get the information, hey, you're user name and password combination would have been correct,
+
+5
+00:00:30,000 --> 00:00:36,000
+but you can't use it, or it would have been wrong, but you can't use, and now I'd like to use state
+
+6
+00:00:36,000 --> 00:00:46,000
+management, especially sessions, in order to store whether we are logged in, and of course, which user is
+
+7
+00:00:46,000 --> 00:00:56,000
+logged in. I would like to do that, and since I might need session management and session_start especially,
+
+8
+00:00:56,000 --> 00:01:04,000
+I'll do this at the very top of the page. Remember, session_start outputs a cookie, and thus needs to be
+
+9
+00:01:04,000 --> 00:01:10,000
+called before any HTML is sent from the server to the client. Let's do this right away.
+
+10
+00:01:10,000 --> 00:01:17,000
+So this starts the session management, which sets everything up for us, and now we can work with the
+
+11
+00:01:17,000 --> 00:01:29,000
+$_SESSION array. I will use the code from down here and just move it up to the top of the page in our
+
+12
+00:01:29,000 --> 00:01:38,000
+php block here. And if we logged in successfully, I do not want to output it, I just write it in a string
+
+13
+00:01:38,000 --> 00:01:49,000
+error, a message = 'Login successful.', and here message = 'Login failed.', and here also message = 'Login
+
+14
+00:01:49,000 --> 00:01:58,000
+failed.', and the default value is $message = is an empty string, and I output just the $message string
+
+15
+00:01:58,000 --> 00:02:08,000
+down there, so I go and how about this, I put out $message. Remember, double quotes means variable names
+
+16
+00:02:08,000 --> 00:02:16,000
+--the string will be replaced by the values of the variable, so I just output the $message variable in
+
+17
+00:02:16,000 --> 00:02:21,000
+a paragraph right here. Alright, but what happens if the login is successful, that's the most important
+
+18
+00:02:21,000 --> 00:02:29,000
+thing? Well, then I would like to store some information in the session, for instance, that I am logged in
+
+19
+00:02:29,000 --> 00:02:39,000
+or even who is logged in. Maybe it's useful to know who is logged in so we know that the user name is in
+
+20
+00:02:39,000 --> 00:02:52,000
+$_POST of name, and also in $row of 'name', so we could just do $_SESSION of 'user' =, and then let's just
+
+21
+00:02:52,000 --> 00:02:59,000
+say $row of 'name'. So I store the currently logged user in the session.
+
+22
+00:02:59,000 --> 00:03:05,000
+Now the session is stored on the server, so it's harder to manipulate than just, say, information that's
+
+23
+00:03:05,000 --> 00:03:13,000
+stored in a cookie. So I just stored it on the server and just sent the user the session id, which doesn't
+
+24
+00:03:13,000 --> 00:03:25,000
+contain any real information. So I can do that. I can also do $_SESSION of isAdmin =, and then $row of
+
+25
+00:03:25,000 --> 00:03:29,000
+isAdmin, or since we've already stored this in the variable, $isAdmin.
+
+26
+00:03:29,000 --> 00:03:39,000
+So I store both the name of the user and whether the user is an administrator or not.
+
+27
+00:03:39,000 --> 00:03:52,000
+So that concludes our login page. Next we have to use that information in those pages which should, say,
+
+28
+00:03:52,000 --> 00:04:02,000
+only be accessible for an administrator, especially the UPDATE and the DELETE page should only be available
+
+29
+00:04:02,000 --> 00:04:09,000
+for an administrator, maybe even the SELECT page should only be available for those with special privileges.
+
+30
+00:04:09,000 --> 00:04:18,000
+Let's add a new PHP File, because it's the same code for UPDATE and DELETE, and maybe even SELECT, because
+
+31
+00:04:18,000 --> 00:04:24,000
+we just would like to check is the user logged in and is the user an admin, and I call this auth.php for
+
+32
+00:04:24,000 --> 00:04:36,000
+authentication. And what we do here is, we just call session_start and then we check whether the user is an
+
+33
+00:04:36,000 --> 00:04:43,000
+admin. So how do we do that? We check if $_SESSION, because that's now available since we've run
+
+34
+00:04:43,000 --> 00:04:52,000
+session_start, is available, and in $_SESSION we could check whether we have a user name.
+
+35
+00:04:52,000 --> 00:05:00,000
+What we could also check is if isAdmin is set. Now for our implementation so far, we do not need to know the
+
+36
+00:05:00,000 --> 00:05:05,000
+name of the user, we just need to know whether it's an admin or not.
+
+37
+00:05:05,000 --> 00:05:16,000
+So I just check $_SESSION of 'isAdmin', so if this is set, and if $_SESSION of 'isAdmin', remember it's a
+
+38
+00:05:16,000 --> 00:05:23,000
+bit field from the database and contains a 1 or well, true, in our case, so we can just use $_SESSION of
+
+39
+00:05:23,000 --> 00:05:32,000
+'isAdmin'. So if the user is logged in and isAdmin is true, then all is good.
+
+40
+00:05:32,000 --> 00:05:39,000
+Well, actually in that case we don't have to do anything, however, we would need to do something if the user
+
+41
+00:05:39,000 --> 00:05:49,000
+is either not logged in or not an admin. So if not is set, ! means in that case not of course, if the isAdmin
+
+42
+00:05:49,000 --> 00:05:57,000
+variable is not set, which means you don't have the variable at all so the user is not logged in, or if
+
+43
+00:05:57,000 --> 00:06:05,000
+not $_SESSION of 'isAdmin', so if it's not true, in that case we don't have an admin or we don't have a user at all.
+
+44
+00:06:05,000 --> 00:06:15,000
+In that case, the user had to go to the Login page, so we redirect the user with header, and then 'login.php'
+
+45
+00:06:15,000 --> 00:06:21,000
+as the new location, so we redirect the user right to the Login page.
+
+46
+00:06:21,000 --> 00:06:29,000
+And this auth file will now be needed on all of those pages that should only be accessible for administrators.
+
+47
+00:06:29,000 --> 00:06:40,000
+So one of them is the update.php page, so what we do here at the very top is require on then the file name,
+
+48
+00:06:40,000 --> 00:06:53,000
+so we have auth.php, and we use require because if the page isn't loaded and our validation code that
+
+49
+00:06:53,000 --> 00:07:00,000
+checks for admins is not loaded, we cannot continue obviously. So require 'auth.php', here an update php,
+
+50
+00:07:00,000 --> 00:07:05,000
+and well, let's add it to delete.php as well. And in the same fashion you could add this code or similar
+
+51
+00:07:05,000 --> 00:07:12,000
+code to the select page. For instance, on the select page you might consider only checking whether the
+
+52
+00:07:12,000 --> 00:07:21,000
+user is logged in, but not if it's an admin _, well, that depends on the application at hand.
+
+53
+00:07:21,000 --> 00:07:26,000
+A quick look in the browser will tell us whether everything works as expected.
+
+54
+00:07:26,000 --> 00:07:36,000
+So let's go to, say, the update page, which redirects us to the select page because we didn't provide a URL
+
+55
+00:07:36,000 --> 00:07:44,000
+parameter. Now, let's go here to, say, edit the christian user, and as you can see, we were redirected to
+
+56
+00:07:44,000 --> 00:07:52,000
+the login.php page because we are not logged in. So let's login now, christian, and then our topsecret
+
+57
+00:07:52,000 --> 00:08:03,000
+password, Login successful. I go back to the overview page, I go to the edit page, and now I am here in
+
+58
+00:08:03,000 --> 00:08:10,000
+the editing UI, because now I am logged in, the application recognizes me, grants me access to the page, and
+
+59
+00:08:10,000 --> 00:59:00,000
+does not require me to actually login again, because I am already logged in.
+

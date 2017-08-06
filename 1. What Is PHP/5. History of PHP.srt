@@ -1,0 +1,212 @@
+1
+00:00:02,000 --> 00:00:08,000
+Before we reach the end of our brief introduction, I have to tell you a little bit more about the history
+
+2
+00:00:08,000 --> 00:00:13,000
+of PHP and the pivotol version numbers PHP saw in its past.
+
+3
+00:00:13,000 --> 00:00:21,000
+It all started in 1994 when, aforementioned, Rasmus Lerdorf started working on a set of tools, which at first
+
+4
+00:00:21,000 --> 00:00:28,000
+he only used for himself, then showed them to some of this closer peers in University.
+
+5
+00:00:28,000 --> 00:00:38,000
+One year later, in 1995, he released those tools and called them Personal Home Page Tools or PHP Tools.
+
+6
+00:00:38,000 --> 00:00:45,000
+Usually this would be the end of the story, because well, those tools were used at the university, and they
+
+7
+00:00:45,000 --> 00:00:51,000
+were also used by some people outside the university, but still, the traction wasn't that high.
+
+8
+00:00:51,000 --> 00:00:56,000
+It was pretty successful, but not that many people actually used it.
+
+9
+00:00:56,000 --> 00:01:04,000
+It wasn't mainstream yet. However, some time later Lerdorf was approached by two Israeli students, Zeev
+
+10
+00:01:04,000 --> 00:01:14,000
+Suraski and Andi Gutmans, and they approached him and suggested some changes for the way PHP was parsing code.
+
+11
+00:01:14,000 --> 00:01:20,000
+Lerdorf was very happy with the suggestions by those two students, and told them to go ahead.
+
+12
+00:01:20,000 --> 00:01:30,000
+They did, and the result was PHP version 3, which also was the first PHP version to support Windows, which
+
+13
+00:01:30,000 --> 00:01:38,000
+was not used that much for hosting back in the day, but of course, still had that gigantic market share for
+
+14
+00:01:38,000 --> 00:01:47,000
+developer systems and especially for desktop systems, which many people used even for programming.
+
+15
+00:01:47,000 --> 00:01:55,000
+With version 3 of PHP, its market share and usage skyrocketed. It was used all over the world, even more so
+
+16
+00:01:55,000 --> 00:02:05,000
+when 2 years later, in 2000, PHP 4 was a new major release. It had a new core, the so-called "Zend Engine".
+
+17
+00:02:05,000 --> 00:02:13,000
+Now Zend is the name of a company Suraski and Gutman set up. You can see that the name of the company is
+
+18
+00:02:13,000 --> 00:02:22,000
+built from the two first names of those gentlemen. Zend employs a lot of developers of PHP, but it doesn't
+
+19
+00:02:22,000 --> 00:02:27,000
+really control PHP. It is still an open source, community-driven effort.
+
+20
+00:02:27,000 --> 00:02:38,000
+Zend just sells a couple of additional services and software for PHP, for instance, Zend Studio, an IDE for PHP.
+
+21
+00:02:38,000 --> 00:02:48,000
+Now PHP 4, with this new core, the Zend Engine, featured more OOP features because PHP 3 actually had, well,
+
+22
+00:02:48,000 --> 00:02:53,000
+no features for object-oriented programming, PHP 4 had a little bit more of that.
+
+23
+00:02:53,000 --> 00:02:59,000
+It also came with series session support. And again, more and more people were using it, more and
+
+24
+00:02:59,000 --> 00:03:08,000
+more websites were built based on PHP. The next major release was PHP 5, and it took the project 4 years
+
+25
+00:03:08,000 --> 00:03:20,000
+in order to make this release. PHP 5 comes with a lot of new features, but many of those features are
+
+26
+00:03:20,000 --> 00:03:27,000
+around object-oriented programming. There are many new OOP features, well new for PHP, other languages had
+
+27
+00:03:27,000 --> 00:03:35,000
+that since years, but still, a lot of OOP was added, so more and more professional applications, more and
+
+28
+00:03:35,000 --> 00:03:43,000
+more professional code could be developed with PHP, thanks to that version.
+
+29
+00:03:43,000 --> 00:03:53,000
+The number after 5 is 6, and so the PHP developer team worked on PHP 6, which among other things, should
+
+30
+00:03:53,000 --> 00:04:02,000
+come with full Unicode support. However, this proved to be quite a task, and so eventually that project was
+
+31
+00:04:02,000 --> 00:04:10,000
+abandoned. PHP was supposed to come with a lot of new features, Unicode just being one of those features.
+
+32
+00:04:10,000 --> 00:04:17,000
+So eventually it was decided that all of the other features were good enough for a new major release, just
+
+33
+00:04:17,000 --> 00:04:26,000
+the Unicode stuff would not make it, so they released PHP 5.3. PHP 6 never saw the day of light.
+
+34
+00:04:26,000 --> 00:04:34,000
+PHP 5.3 came with many, many new features and was the new de facto standard.
+
+35
+00:04:34,000 --> 00:04:42,000
+So although it's only a minor version number update, there was 5.1 and 5.2 in between as well, by the way,
+
+36
+00:04:42,000 --> 00:04:56,000
+5.3 is the new PHP version, the new big version after PHP 5. After 5.3, followed 5.4 and 5.5, and as I'm
+
+37
+00:04:56,000 --> 00:05:03,000
+recording this, PHP version 5.6 is about to be released. Just a few days now and whenever you are
+
+38
+00:05:03,000 --> 00:05:11,000
+listening to this, 5.6 will have been released, so it will be the most current version.
+
+39
+00:05:11,000 --> 00:05:18,000
+Maybe there is even a more recent version of that. 2014, at the time when I am recording this, also saw
+
+40
+00:05:18,000 --> 00:05:26,000
+two other new developments. One is that the final update for 5.3 has been released so there won't be any
+
+41
+00:05:26,000 --> 00:05:35,000
+new updates for PHP 5.3 as of August 2014. That means if you should still be using 5.3 or your hosting
+
+42
+00:05:35,000 --> 00:05:44,000
+provider is still using 5.3, you will have an outdated version, so you should seriously consider upgrading
+
+43
+00:05:44,000 --> 00:05:52,000
+your PHP version. Also, the version number for the next major version of PHP has been determined.
+
+44
+00:05:52,000 --> 00:06:00,000
+There was a long debate whether it should be PHP 6 or PHP 7 or something entirely different, but since PHP 6
+
+45
+00:06:00,000 --> 00:06:06,000
+is still remembered by some as that version that never came to be, the team decided to call the next major
+
+46
+00:06:06,000 --> 00:06:15,000
+version PHP 7, so let's see when this will come out, but until then 5. something, at least 5.6 is the version
+
+47
+00:06:15,000 --> 00:06:19,000
+we are about to work with.
+
+48
+00:06:19,000 --> 00:06:28,000
+So in conclusion, we saw that PHP is very, very popular. It's supported by most operating systems, most
+
+49
+00:06:28,000 --> 00:06:36,000
+web servers, and a very large number of developers. You saw how to install PHP on a specific system.
+
+50
+00:06:36,000 --> 00:06:43,000
+We learned about phpinfo, the Hello World! on steroids. We learned how to use the owner manual, for
+
+51
+00:06:43,000 --> 00:06:51,000
+instance, to look up how to install PHP on another system or another web server, and we had a quick dash
+
+52
+00:06:51,000 --> 00:06:57,000
+through the history of PHP and relevant version numbers. So we had a great start, and I hope you are looking
+
+53
+00:06:57,000 --> 00:59:00,000
+forward to continue to getting started with PHP.
+

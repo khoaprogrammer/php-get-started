@@ -1,0 +1,384 @@
+1
+00:00:02,000 --> 00:00:12,000
+In order to communicate with MySQL from PHP, we use the mysqli extension that ships with PHP, and in most
+
+2
+00:00:12,000 --> 00:00:20,000
+installations it's enabled by default. We have here our configuration file, php.ini, and you see here that
+
+3
+00:00:20,000 --> 00:00:28,000
+we have a line extension=php_mysgli.dll. On systems other than Windows, the file extension is different,
+
+4
+00:00:28,000 --> 00:00:34,000
+but the rest is the same usually. And since there is no semi-colon at the beginning of that line, the
+
+5
+00:00:34,000 --> 00:00:42,000
+extension is part of our PHP system and is automatically loaded. If you look at the PHP info output, you
+
+6
+00:00:42,000 --> 00:00:51,000
+will also see an entry for mysqli. You will also see that the name mysql shows up a few more times in
+
+7
+00:00:51,000 --> 00:01:01,000
+php.ini, so there is a mysql extension, there is also a pdo_mysql extension, but the most common one used is
+
+8
+00:01:01,000 --> 00:01:11,000
+mysqli, so that's what we are using in order to access our database from PHP.
+
+9
+00:01:11,000 --> 00:01:18,000
+The first step is to connect to the actual database. The mysqli extension provides the function
+
+10
+00:01:18,000 --> 00:01:27,000
+mysqli_connect for that. As I mentioned previously, there is also an object-oriented API, in which case you
+
+11
+00:01:27,000 --> 00:01:33,000
+would need to instantiate the mysqli class, but there is no difference in functionality, so we will use
+
+12
+00:01:33,000 --> 00:01:37,000
+the function-based one, and that's the one here using mysqli_connect.
+
+13
+00:01:37,000 --> 00:01:44,000
+You provide server name, username, a password, and if you want, and usually you want, you also provide the
+
+14
+00:01:44,000 --> 00:01:51,000
+name of a database. The return value of mysqli_connect is a resource.
+
+15
+00:01:51,000 --> 00:01:57,000
+It's kind of a handle or pointer to the database connection.
+
+16
+00:01:57,000 --> 00:02:06,000
+You will need to use that handle, that resource, when communicating with the MySQL database later one, because
+
+17
+00:02:06,000 --> 00:02:13,000
+on one page you could connect to several MySQL databases, and PHP, of course, always has to know which
+
+18
+00:02:13,000 --> 00:02:22,000
+database you intend to send some SQL statement to, so you have to use the return value of mysqli_connect.
+
+19
+00:02:22,000 --> 00:02:28,000
+At the end of the day, or well, at least at the end of the script, you may also want to close the connection
+
+20
+00:02:28,000 --> 00:02:35,000
+to the MySQL database, and mysqli_close is the command that does exactly that.
+
+21
+00:02:35,000 --> 00:02:42,000
+As you can see here, you have to provide the database handle as an argument so that PHP knows which MySQL
+
+22
+00:02:42,000 --> 00:02:52,000
+connection to close. There's good news. The built-in garbage collection or garbage management of PHP
+
+23
+00:02:52,000 --> 00:03:00,000
+takes care if a script is at its end all open connections are closed anyway, however, from a performance
+
+24
+00:03:00,000 --> 00:03:07,000
+point of view, it's always a good idea to close a database connection as soon as possible in order to free
+
+25
+00:03:07,000 --> 00:03:18,000
+up resources. When communicating with a MySQL database, mysqli_query is the function most commonly used to
+
+26
+00:03:18,000 --> 00:03:27,000
+send an SQL statement to the database. The first argument for mysqli_query is the database handle.
+
+27
+00:03:27,000 --> 00:03:32,000
+Once again, PHP has to know which database to talk to or which database connection to use.
+
+28
+00:03:32,000 --> 00:03:38,000
+The second argument is the SQL statement. As you can see here, we have an IO SQL statement you have to
+
+29
+00:03:38,000 --> 00:03:44,000
+take care about double and single quotes so that you mix and match them correctly, but basically what
+
+30
+00:03:44,000 --> 00:03:50,000
+happens then is that this statement is sent to the database and the database then processes it.
+
+31
+00:03:50,000 --> 00:03:57,000
+As previously mentioned, we do not do any error handling here, so we do not specifically check whether that
+
+32
+00:03:57,000 --> 00:04:02,000
+works or goes wrong, but basically if the statement is correct, if the user has sufficient privileges,
+
+33
+00:04:02,000 --> 00:04:09,000
+then the statement goes through. The database will process it, and in that case, since we have an INSERT
+
+34
+00:04:09,000 --> 00:04:19,000
+statement, we'll store the new information in the database and we will try that with our small example right now.
+
+35
+00:04:19,000 --> 00:04:27,000
+Since, however, our form will allow users to provide data to be stored in the database, we have to be very,
+
+36
+00:04:27,000 --> 00:04:36,000
+very careful from a security point of view. The danger here is called SQL injection, because if we send an
+
+37
+00:04:36,000 --> 00:04:42,000
+SQL statement to the server, and part of that statement is data from the user, maybe the user sent us
+
+38
+00:04:42,000 --> 00:04:49,000
+another SQL statement, like drop table or delete something, so we have to prevent this.
+
+39
+00:04:49,000 --> 00:04:59,000
+There are several ways to do this using the mysqli extension. We are using an approach that escapes
+
+40
+00:04:59,000 --> 00:05:06,000
+dangerous special characters. In order to escape those special database characters and any user input,
+
+41
+00:05:06,000 --> 00:05:13,000
+we can use a function that's part of the mysqli extension called mysqli_real_escape_string.
+
+42
+00:05:13,000 --> 00:05:18,000
+The mysqli_real_escape_string function expects two arguments at least.
+
+43
+00:05:18,000 --> 00:05:24,000
+The first one, once again, is the database handle and the second one is the value to escape.
+
+44
+00:05:24,000 --> 00:05:31,000
+Now in this example here, we have value1, value2, there are no special characters in there, but if the values
+
+45
+00:05:31,000 --> 00:05:39,000
+contain, say, single quotes, then those would be properly escaped for MySQL.
+
+46
+00:05:39,000 --> 00:05:45,000
+So basically what we do here is we assemble our SQL string. We are using sprintf.
+
+47
+00:05:45,000 --> 00:05:50,000
+Sprintf is like a printf, a formatted print, however, it doesn't directly print
+
+48
+00:05:50,000 --> 00:05:56,000
+something out, but it returns it as a string, so that's what the first s stands for.
+
+49
+00:05:56,000 --> 00:06:03,000
+So we have again an INSERT INTO table statement, however, we have two placeholders in that statement with
+
+50
+00:06:03,000 --> 00:06:10,000
+the percentage sign and an s; s, again, stands for string. And next up we will provide the values for
+
+51
+00:06:10,000 --> 00:06:18,000
+those placeholders. In the values we make sure, using mysqli_real_escape_string, that all special characters
+
+52
+00:06:18,000 --> 00:06:25,000
+are properly escaped. And only after we've done this we will send the SQL statement to the server using,
+
+53
+00:06:25,000 --> 00:06:33,000
+once again, mysqli_query. There are additional _____ you could use, so for instance, if you expect
+
+54
+00:06:33,000 --> 00:06:40,000
+a number value from one specific form field then you could check whether that's really a number and doesn't
+
+55
+00:06:40,000 --> 00:06:48,000
+contain, say, any letters, and the mysqli extension also provides a mechanism called prepared statements,
+
+56
+00:06:48,000 --> 00:06:53,000
+where you first create a statement and then assign the dynamic values, which will be later inserted into the
+
+57
+00:06:53,000 --> 00:06:58,000
+database, but for now this is actually good enough, so that's what we'll use
+
+58
+00:06:58,000 --> 00:07:06,000
+not only here on the slides, but now also within our PHP editor and in our code.
+
+59
+00:07:06,000 --> 00:07:15,000
+To save some time, and especially typing, I have taken the liberty to already prepare some basic HTML for
+
+60
+00:07:15,000 --> 00:07:24,000
+our insert form. I've used the form from the previous module and removed a couple of fields, I just left
+
+61
+00:07:24,000 --> 00:07:32,000
+three back in, the username, the gender, and the favorite color. I also left in the Submit button and
+
+62
+00:07:32,000 --> 00:07:40,000
+the validation logic, however I removed the other fields. The idea now is the user can fill out that form
+
+63
+00:07:40,000 --> 00:07:49,000
+enter some data, and once the form is submitted, we create a SQL statement out of the information from the
+
+64
+00:07:49,000 --> 00:07:58,000
+form and send it to the database. So what we will do is, first of all we connect to the database,
+
+65
+00:07:58,000 --> 00:08:12,000
+mysqli_connect. The host is localhost. The user, and I've discussed this a bit, is root and empty password,
+
+66
+00:08:12,000 --> 00:08:21,000
+that's the way XAMPP is rolling, but of course you will have your individual user here, and we need the name of our
+
+67
+00:08:21,000 --> 00:08:32,000
+database, which is called php. Then we need to create the SQL statement, and I'd like to use sprintf for that.
+
+68
+00:08:32,000 --> 00:08:44,000
+So I store the statement in a  u variable and have, well, some basic SQL before I escape user input.
+
+69
+00:08:44,000 --> 00:08:50,000
+I am not using single quotes, I am using double quotes, because I need single quotes within the SQL
+
+70
+00:08:50,000 --> 00:08:56,000
+statement so less escaping for me if I use double quotes here, otherwise, there's no difference.
+
+71
+00:08:56,000 --> 00:09:02,000
+The statement will probably look like this, INSERT INTO, and then the name of our table, which is called
+
+72
+00:09:02,000 --> 00:09:14,000
+users. Then we have a set of columns, VALUES, and another set of VALUES in that case.
+
+73
+00:09:14,000 --> 00:09:25,000
+The columns we have set up were called name for the username, gender for the gender, and color for the
+
+74
+00:09:25,000 --> 00:09:34,000
+favorite color. Next up are the VALUES, and I'll put them in a new line so it's a bit easier to read.
+
+75
+00:09:34,000 --> 00:09:43,000
+We'll have three VALUES, all of them conveniently strings, and I'll use the placeholder syntax of sprintf here.
+
+76
+00:09:43,000 --> 00:09:50,000
+So that's the statement INSERT INTO users (name, gender, color) and the VALUES,
+
+77
+00:09:50,000 --> 00:09:59,000
+and what I'll do next is I will add values for those placeholders.
+
+78
+00:09:59,000 --> 00:10:09,000
+Remember that in the form we've created PHP variables, name, gender, color, which already hold user input.
+
+79
+00:10:09,000 --> 00:10:16,000
+However, there still might be special characters in them, so we need to escape them.
+
+80
+00:10:16,000 --> 00:10:24,000
+We can use mysqli_real_escape_string, we use the database connection, and then the value of the first one
+
+81
+00:10:24,000 --> 00:10:39,000
+is $name for the username, and then I'll just do copy and paste and add the values of $gender, and finally
+
+82
+00:10:39,000 --> 00:10:47,000
+$color. That's the statement. Now the statement should be safe and sound.
+
+83
+00:10:47,000 --> 00:10:57,000
+And finally, I can do mysqli_query. I can use the database handle from before, provide the sql string I just
+
+84
+00:10:57,000 --> 00:11:07,000
+created, and I am done, and well in the end I could do a mysqli_close in order to free up resources.
+
+85
+00:11:07,000 --> 00:11:21,000
+Also I could output something like echo, User added so that we know what we've done.
+
+86
+00:11:21,000 --> 00:11:30,000
+Let's go through this again. First of all, we connect to our database, then we assemble our SQL statement,
+
+87
+00:11:30,000 --> 00:11:37,000
+making sure that all the special characters are properly escaped, and then we send it to the database.
+
+88
+00:11:37,000 --> 00:11:46,000
+The connection will be closed later. Basically that's it. Let's run this in the browser.
+
+89
+00:11:46,000 --> 00:11:59,000
+So we launch our insert script, we have our UI here, and let's just add a new user, say Rasmus, who is
+
+90
+00:11:59,000 --> 00:12:11,000
+male and who's favorite color is blue, Submit, User added. And now let's add debbie, who is female,
+
+91
+00:12:11,000 --> 00:12:17,000
+who's favorite color might be red, Submit, again it says User added.
+
+92
+00:12:17,000 --> 00:12:25,000
+If you go to phpMyAdmin, you see the database was empty before, the table was empty before.
+
+93
+00:12:25,000 --> 00:12:32,000
+I click on Browse again, and now we see that we actually have two users in our database.
+
+94
+00:12:32,000 --> 00:12:42,000
+So adding the users worked pretty well. Now we can add additional users, we might also consider removing
+
+95
+00:12:42,000 --> 00:12:50,000
+the pre-filling of the form maybe after a user has been added, so that afterwards it's easier to add a
+
+96
+00:12:50,000 --> 00:59:00,000
+completely new user without having to delete previous input, but basically our insert form is now done.
+

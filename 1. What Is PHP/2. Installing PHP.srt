@@ -1,0 +1,284 @@
+1
+00:00:03,000 --> 00:00:09,000
+In order to install PHP, we first have to acquire to download it.
+
+2
+00:00:09,000 --> 00:00:18,000
+For that we have two options, either we can go to the PHP Home page and the PHP website has a download
+
+3
+00:00:18,000 --> 00:00:27,000
+section where we can get both the source code and pre-compiled binaries of PHP, or if we are Windows users
+
+4
+00:00:27,000 --> 00:00:36,000
+we can go to Windows.php.net where we find Windows binaries of PHP.
+
+5
+00:00:36,000 --> 00:00:45,000
+The PHP Download section focuses on the PHP source codes or if you want to build PHP by yourself, that's the
+
+6
+00:00:45,000 --> 00:00:54,000
+way to go. Otherwise, there are links to downloads for specific operating systems, most prominently Windows
+
+7
+00:00:54,000 --> 00:01:03,000
+on the windows.php.net. That's a specific website just for Windows users where the PHP Windows team, which
+
+8
+00:01:03,000 --> 00:01:11,000
+in part is even funded by Microsoft, provides up-to-date releases of PHP compiled for Windows systems, not
+
+9
+00:01:11,000 --> 00:01:19,000
+only for the IIS web server for Microsoft, but also for Apache web server and other systems,
+
+10
+00:01:19,000 --> 00:01:25,000
+but it separates it from the rest. Other operating systems like Linux, for instance, have package managers
+
+11
+00:01:25,000 --> 00:01:33,000
+which can install PHP with the web server. Some operating systems even come with PHP already installed or
+
+12
+00:01:33,000 --> 00:01:42,000
+at least built-in. So depending on your operating systems, the steps to get a working PHP system up and
+
+13
+00:01:42,000 --> 00:01:47,000
+running might a bit different.
+
+14
+00:01:47,000 --> 00:01:56,000
+One of the most convenient ways to get started with a PHP setup is to use an all-in-one installer, which
+
+15
+00:01:56,000 --> 00:02:02,000
+both installs the web server and PHP, and maybe some other useful software as well.
+
+16
+00:02:02,000 --> 00:02:13,000
+There are several options, and the one we have chosen is a product from apachefriends.org.
+
+17
+00:02:13,000 --> 00:02:22,000
+Those friends of Apache provide very popular distribution calls XAMPP.
+
+18
+00:02:22,000 --> 00:02:30,000
+The A stands for Apache, the M for MySQL, which is a database which we will cover later in this course, and
+
+19
+00:02:30,000 --> 00:02:43,000
+the first P stands for PHP and the second P stands for Perl. The X signifies that XAMPP is not tied to a
+
+20
+00:02:43,000 --> 00:02:49,000
+specific operating system. There are versions for Windows, there are versions for Linux, there are versions
+
+21
+00:02:49,000 --> 00:02:57,000
+for other operating systems. And the basic idea behind XAMPP is that you have one installer and that installer
+
+22
+00:02:57,000 --> 00:03:04,000
+installs you all required software packages and they come preconfigured.
+
+23
+00:03:04,000 --> 00:03:12,000
+So not only does XAMPP install you an Apache web server, and not only does XAMPP install you PHP, _____ the
+
+24
+00:03:12,000 --> 00:03:19,000
+web server is also configured so that it can use PHP right away. So that's really, really convenient, and
+
+25
+00:03:19,000 --> 00:03:26,000
+probably the easiest way to get your first own system up and running for development purposes.
+
+26
+00:03:26,000 --> 00:03:32,000
+The Download section of apachefriends.org provides XAMPP for a variety of operating systems.
+
+27
+00:03:32,000 --> 00:03:39,000
+You see your Windows, Linux, and some others further down. And what you basically do is you download the
+
+28
+00:03:39,000 --> 00:03:47,000
+package and then you get a kind of installer, which you just have to run and then everything is set up
+
+29
+00:03:47,000 --> 00:03:56,000
+automatically for you. I happen to have the XAMPP installer for Windows here, so I'll just run this and
+
+30
+00:03:56,000 --> 00:04:02,000
+show you how it works. Again, if you have a different operating system or a different _____ of web server,
+
+31
+00:04:02,000 --> 00:04:08,000
+don't worry, there are detailed installation instructions for you on the PHP Home page.
+
+32
+00:04:08,000 --> 00:04:15,000
+The XAMPP installer first warns me about User Account Control and that I should not install XAMPP into the
+
+33
+00:04:15,000 --> 00:04:24,000
+Program Files folder because it's harder to write PHP files into that folder later on, and I'll adhere to that.
+
+34
+00:04:24,000 --> 00:04:32,000
+But the most important step is which components I want. I can pick and choose what is installed by XAMPP
+
+35
+00:04:32,000 --> 00:04:39,000
+and what I do not need. Now you can pick anything, because later you will choose which of those components
+
+36
+00:04:39,000 --> 00:04:45,000
+are actually running, but if you are certain that you do not need some of those components you can just
+
+37
+00:04:45,000 --> 00:04:52,000
+deselect them, and that's what I will be doing right now because I do not need Apache, that's mandatory.
+
+38
+00:04:52,000 --> 00:04:58,000
+I do need MySQL choice the database for later. I do not need an FTP Server or a Mail Server or an application
+
+39
+00:04:58,000 --> 00:05:06,000
+server, so I deselect those three. I do need PHP, I even cannot deselect it, but I do not want Perl.
+
+40
+00:05:06,000 --> 00:05:13,000
+I will need phpMyAdmin to administer the database later on. I do not need Webalizer.
+
+41
+00:05:13,000 --> 00:05:20,000
+I will probably need Fake Sendmail to test sending emails out later on.
+
+42
+00:05:20,000 --> 00:05:27,000
+The recommended installation folder is usually a good choice, so I'll just stick to that.
+
+43
+00:05:27,000 --> 00:05:36,000
+I do not want more information about the Bitnami Company who provides installers that also configure
+
+44
+00:05:36,000 --> 00:05:43,000
+applications like WordPress or Joomla! with the web server and PHP I don't need that right now so I deselect
+
+45
+00:05:43,000 --> 00:05:52,000
+that, and well, then I'm ready, and the distribution is installed on my system.
+
+46
+00:05:52,000 --> 00:05:59,000
+This will take a while, so I will use advanced video editing techniques to fast-forward to the end of that
+
+47
+00:05:59,000 --> 00:06:05,000
+installation, but what basically happens is that all files required for our PHP, all files required for the
+
+48
+00:06:05,000 --> 00:06:13,000
+Apache web server, and so on and so forth, are copied into my system, and then configured so that the system
+
+49
+00:06:13,000 --> 00:06:25,000
+is ready to wrap, and we're done. The installer now provides us with the option to start the XAMPP Control
+
+50
+00:06:25,000 --> 00:06:34,000
+Panel, and that's a very important tool for XAMPP because it's a kind of management console that gives us
+
+51
+00:06:34,000 --> 00:06:42,000
+easy access to the components we installed. We can start those components, we can stop them, we can even
+
+52
+00:06:42,000 --> 00:06:51,000
+install them as a service. So we are focusing now on Apache, we can start Apache, we could also then if
+
+53
+00:06:51,000 --> 00:07:00,000
+Apache is running, stop Apache. We can also install Apache as a service if we click on the checkbox on the
+
+54
+00:07:00,000 --> 00:07:07,000
+left so it's automatically running once the machine boots up. At the moment, I just want to start Apache,
+
+55
+00:07:07,000 --> 00:07:17,000
+so I click on the Start button, and after a short while Apache is running and we can have a look at the
+
+56
+00:07:17,000 --> 00:07:28,000
+running system. In order to do so, we just fire up a web browser and go to localhost, and then have a direct
+
+57
+00:07:28,000 --> 00:07:37,000
+access to the XAMPP installation. We have to pick a language just once, it just remembers it, and then we
+
+58
+00:07:37,000 --> 00:07:44,000
+get the XAMPP Start page which looks like this. So we see the XAMPP version, we see the version of PHP
+
+59
+00:07:44,000 --> 00:07:51,000
+being used, and we have access to several options and further applications.
+
+60
+00:07:51,000 --> 00:07:57,000
+So, for instance, we can have a look at the status of the installation which tells us which services and
+
+61
+00:07:57,000 --> 00:08:03,000
+components are installed and running. We get access to the documentation, to components, etc., etc.
+
+62
+00:08:03,000 --> 00:08:12,000
+We can also have access to various PHP sample applications which just prove us that the system is up and
+
+63
+00:08:12,000 --> 00:08:16,000
+running correctly.
+
+64
+00:08:16,000 --> 00:08:21,000
+And again, using XAMPP or one of the other all-in-one tools is not mandatory.
+
+65
+00:08:21,000 --> 00:08:30,000
+You can install PHP manually as well, and the best way to start doing that is to go to the PHP online manual
+
+66
+00:08:30,000 --> 00:08:35,000
+at php.net/install.
+
+67
+00:08:35,000 --> 00:08:44,000
+There you'll find detailed information on a variety of systems, so you see Unix systems, Mac OS X, Windows
+
+68
+00:08:44,000 --> 00:08:54,000
+systems, different versions, different type of web service, so a lot of information so that almost all cases
+
+69
+00:08:54,000 --> 00:09:01,000
+are covered by very exhaustive information here in the PHP online manual.
+
+70
+00:09:01,000 --> 00:09:11,000
+So installing PHP is actually pretty easy. Just download PHP or a preexisting installer, and then you are
+
+71
+00:09:11,000 --> 00:59:00,000
+ready to go, ready to get started with your own custom PHP code.
+

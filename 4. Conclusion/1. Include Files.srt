@@ -1,0 +1,184 @@
+1
+00:00:01,000 --> 00:00:11,000
+In this final module of PHP Get Started, we'll wrap up our small sample application, introducing a few more
+
+2
+00:00:11,000 --> 00:00:14,000
+PHP features along the way.
+
+3
+00:00:14,000 --> 00:00:24,000
+First of all, we will talk about including files, so we have either code or HTML markup in external files,
+
+4
+00:00:24,000 --> 00:00:33,000
+which basically is not a bad idea, then we need to load or include them in our PHP script, and we'll have a
+
+5
+00:00:33,000 --> 00:00:40,000
+look at how this is done. We will also talk about a very important topic, we'll talk about storing
+
+6
+00:00:40,000 --> 00:00:47,000
+passwords. Obviously you shouldn't store passwords in clear text, but even some of the encryption or
+
+7
+00:00:47,000 --> 00:00:55,000
+hashing mechanisms are not recommended these days, so we will have a look at a secure implementation which
+
+8
+00:00:55,000 --> 00:01:03,000
+comes with PHP. Finally, we will cover state management from a PHP perspective, so we would like to remember
+
+9
+00:01:03,000 --> 00:01:12,000
+information, to remember data, and HTTP doesn't allow us to do that actually, but there are workarounds and
+
+10
+00:01:12,000 --> 00:01:19,000
+PHP implements a workaround, and that's very easy to use and we will use that in our sample application.
+
+11
+00:01:19,000 --> 00:01:27,000
+But first, let's start with Include Files, so external files. I mean, in general it's a good idea to split
+
+12
+00:01:27,000 --> 00:01:35,000
+up your code and also your markup in individual files so you can reuse markup, you can reuse implementations,
+
+13
+00:01:35,000 --> 00:01:41,000
+and it's also a bit easier to work on a project with several people at the same time,
+
+14
+00:01:41,000 --> 00:01:46,000
+and PHP has a built-in mechanism to handle those files to be included.
+
+15
+00:01:46,000 --> 00:01:55,000
+If we have external PHP files, so if we have PHP functionality that resides in an external file, we can load
+
+16
+00:01:55,000 --> 00:02:01,000
+that external file from our PHP script so we can use the functionality.
+
+17
+00:02:01,000 --> 00:02:07,000
+If you use, say, object-oriented programming, and PHP offers a lot in that area, then that's more or less
+
+18
+00:02:07,000 --> 00:02:14,000
+a must so that you can split up your classes into individual files, but even if you do not do this it can
+
+19
+00:02:14,000 --> 00:02:23,000
+be beneficial to put functions that you use from several PHP pages into one file so that you only have one
+
+20
+00:02:23,000 --> 00:02:30,000
+copy of that functionality and only have to maintain this one file with the functionality.
+
+21
+00:02:30,000 --> 00:02:39,000
+Now PHP offers four commands in order to load those files, include, include_once, require, and require_once.
+
+22
+00:02:39,000 --> 00:02:45,000
+I think the names of those instructions are pretty self-explanatory.
+
+23
+00:02:45,000 --> 00:02:53,000
+So include just loads includes an external PHP file at the very position where you include it, so it will
+
+24
+00:02:53,000 --> 00:03:02,000
+be included and it runs. If you include the same file several times, well, it will be loaded and executed
+
+25
+00:03:02,000 --> 00:03:08,000
+several times. If you use include_once, however, only the very first time you load one specific file it
+
+26
+00:03:08,000 --> 00:03:16,000
+will be loaded and executed. All the subsequent calls to include once with the same file, well, they are
+
+27
+00:03:16,000 --> 00:03:23,000
+kind of ignored. If the file you want to include doesn't exist, you get a warning, however, the PHP script
+
+28
+00:03:23,000 --> 00:03:32,000
+continues running. If you use require, instead of include, then the file you want to include needs to exist.
+
+29
+00:03:32,000 --> 00:03:40,000
+If you do require filename.php and filename.php does not exist, you'll get an error, and the PHP script stops.
+
+30
+00:03:40,000 --> 00:03:48,000
+Well, and finally, require_once is require, but it checks before whether the same file has already been
+
+31
+00:03:48,000 --> 00:03:54,000
+included using require. If so, it's not loaded and executed again.
+
+32
+00:03:54,000 --> 00:04:04,000
+So, just have a look at those two files. We have our PHP file, you see, &lt;?php, it requires the hello.php
+
+33
+00:04:04,000 --> 00:04:10,000
+file. You don't need parentheses after a require or include or require_once or include_once call.
+
+34
+00:04:10,000 --> 00:04:20,000
+Well, and then echo ' World', and we have the hello.php file at the bottom, which also starts with &lt;?php
+
+35
+00:04:20,000 --> 00:04:27,000
+because it contains php code, no markup, and that file echoes 'Hello'.
+
+36
+00:04:27,000 --> 00:04:36,000
+If this is run, what basically happens is that we first load hello.php with the require call, so the php
+
+37
+00:04:36,000 --> 00:04:43,000
+script does echo 'Hello', and only then the echo ' World' is executed because it's put afterwards in the
+
+38
+00:04:43,000 --> 00:04:52,000
+original PHP file. In the end we get Hello World, and that's basically what include and require and
+
+39
+00:04:52,000 --> 00:04:59,000
+include_once and require_once do for php files. Now if you would like to put HTML markup into an external
+
+40
+00:04:59,000 --> 00:05:08,000
+file, we cannot use this mechanism really well because include and require is called from PHP where PHP code
+
+41
+00:05:08,000 --> 00:05:15,000
+is expected. However, there are several other functions in PHP for loading, let's say, regular files,
+
+42
+00:05:15,000 --> 00:05:23,000
+and the most convenient one here is to use readfile. Readfile loads a file and outputs it immediately.
+
+43
+00:05:23,000 --> 00:05:30,000
+So if you, say, have a navigation in an external file and you would like to use that navigation from several
+
+44
+00:05:30,000 --> 00:05:37,000
+individual pages on your PHP website, you could use read file and read file then loads the navigation.
+
+45
+00:05:37,000 --> 00:05:45,000
+You only have to have the navigation once, you only have to maintain it once, and can then include it into
+
+46
+00:05:45,000 --> 00:59:00,000
+several of your pages.
+

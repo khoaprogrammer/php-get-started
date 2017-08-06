@@ -1,0 +1,112 @@
+1
+00:00:02,000 --> 00:00:09,000
+As I mentioned before, PHP has an excellent documentation. You'll find it on the php.net website in the
+
+2
+00:00:09,000 --> 00:00:17,000
+manual documentation section, however, there are some very, very useful shortcuts, so PHP supports a lot of
+
+3
+00:00:17,000 --> 00:00:26,000
+vanity URLs. So if you append, say, a function name, or the name of a constant or some other special terms
+
+4
+00:00:26,000 --> 00:00:36,000
+to the URL, so if, for instance, you go to php.net/phpinfo, you go to the manual page for phpinfo,
+
+5
+00:00:36,000 --> 00:00:41,000
+this works in most cases. So let's have a look.
+
+6
+00:00:41,000 --> 00:00:48,000
+As you can see here, php.net/manual gets you to the PHP Manual and you're automatically redirected into the
+
+7
+00:00:48,000 --> 00:00:56,000
+language version of your browser's language setting. Of course the English version of the PHP Manual is
+
+8
+00:00:56,000 --> 00:01:02,000
+usually the one that's most up-to-date, but as you can see here there are several other languages supported
+
+9
+00:01:02,000 --> 00:01:13,000
+as well. Also we have the shortcut URLs so we can go to php.net/phpinfo, and we are then redirected to the
+
+10
+00:01:13,000 --> 00:01:18,000
+phpinfo Manual page, and as I mentioned it works for most of the built-in functions.
+
+11
+00:01:18,000 --> 00:01:27,000
+Also there's some generic terms like install, so if we go to php.net/install and this leads us to the Installation
+
+12
+00:01:27,000 --> 00:01:35,000
+section including some other not-so-common shortcuts like install.windows, which leads us to, you may have
+
+13
+00:01:35,000 --> 00:01:45,000
+guessed it, the Windows Installation page. Obviously that only works when you're online.
+
+14
+00:01:45,000 --> 00:01:52,000
+Your IDE might provide you with an offline version of the manual, however, there is one on the php.net
+
+15
+00:01:52,000 --> 00:02:00,000
+website as well. In order to get access to that offline version of the PHP manual, go to the Downloads
+
+16
+00:02:00,000 --> 00:02:06,000
+section of the php.net website and then on the right you have the documentation download link.
+
+17
+00:02:06,000 --> 00:02:13,000
+This leads you to a page where you can download the manual in a variety of formats including one single
+
+18
+00:02:13,000 --> 00:02:22,000
+big HTML file, many HTML files, and probably most convenient, an HTML Help file.
+
+19
+00:02:22,000 --> 00:02:27,000
+So you have the usual chm format, as long as you have a chm viewer, which is automatically the case on
+
+20
+00:02:27,000 --> 00:02:34,000
+Windows, in order to have a look at that content. There are two versions of the HTML Help file.
+
+21
+00:02:34,000 --> 00:02:41,000
+One that just contains the manual and another one which also contains user notes, and user notes is another
+
+22
+00:02:41,000 --> 00:02:50,000
+very useful feature of the PHP online manual. If you go to an arbitrary manual page like the phpinfo,
+
+23
+00:02:50,000 --> 00:02:57,000
+mail page we saw before you'll see that there is some description about that function, however, at the end they are
+
+24
+00:02:57,000 --> 00:03:05,000
+User Contributed Notes, which start right here. And what happens here is that it's a created list of user
+
+25
+00:03:05,000 --> 00:03:12,000
+suggestions and user postings providing additional information, workarounds, common issues, etc., etc.
+
+26
+00:03:12,000 --> 00:03:18,000
+Of course, not all of the code snippets in there and not all of the advice in there is always valuable
+
+27
+00:03:18,000 --> 00:03:26,000
+or even factually correct, but most of it is pretty good, it gives you some very common workarounds,
+
+28
+00:03:26,000 --> 00:59:00,000
+some very common have to knows about certain pages in the PHP Manual and features that come along with it.
+

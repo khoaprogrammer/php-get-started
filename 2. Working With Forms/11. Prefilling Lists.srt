@@ -1,0 +1,176 @@
+1
+00:00:02,000 --> 00:00:09,000
+Two more form fields to go, the two lists, the dropdown list and the multi-select list.
+
+2
+00:00:09,000 --> 00:00:18,000
+Well, it's kind of similar to the checkbox, and especially the radio buttons, but with some differences though.
+
+3
+00:00:18,000 --> 00:00:27,000
+If a list element is selected, we need to use the HTML attribute selected, so we had checked with the radio
+
+4
+00:00:27,000 --> 00:00:34,000
+button _____ checkboxes, and now it's selected for the list. The only thing remaining is to find out whether
+
+5
+00:00:34,000 --> 00:00:41,000
+any given element has been selected. It's rather easy for the dropdown list, because it's almost the same
+
+6
+00:00:41,000 --> 00:00:48,000
+as for the radio buttons. It's a little bit more complicated for the multi-select list because we have to
+
+7
+00:00:48,000 --> 00:00:58,000
+learn one more new array function of PHP. Let's start with the colors list, because we can only pick one
+
+8
+00:00:58,000 --> 00:01:07,000
+color. Basically, if for instance, this red color had been previously selected we would need to add
+
+9
+00:01:07,000 --> 00:01:12,000
+selected here. How can we find out whether the red color had been previously selected?
+
+10
+00:01:12,000 --> 00:01:17,000
+Well, we need to add a php block and have a look at the $color variable.
+
+11
+00:01:17,000 --> 00:01:27,000
+So I add a php block, and within the php block what I'm doing is I check if $color has a value of, and in
+
+12
+00:01:27,000 --> 00:01:34,000
+that case, not red, because red is the caption, we're interested in the value, so we have to compare the
+
+13
+00:01:34,000 --> 00:01:43,000
+values, and if the values match then we can echo out ' selected', and we are good.
+
+14
+00:01:43,000 --> 00:01:51,000
+Forgive me for using copy and paste, but it makes things a little bit faster, so I do the same thing here, I
+
+15
+00:01:51,000 --> 00:02:05,000
+just need to swap out the color code, this time for green, and finally I do the same thing for blue using the blue
+
+16
+00:02:05,000 --> 00:02:14,000
+color code, and I'm done here. I do not have to specifically preselect the first element, of course.
+
+17
+00:02:14,000 --> 00:02:22,000
+So I just check which color had been chosen, if any, and depending on the color I preselect an item.
+
+18
+00:02:22,000 --> 00:02:29,000
+There's a little bit more work to do for the languages, because well, I could essentially start with code
+
+19
+00:02:29,000 --> 00:02:40,000
+like this, but I cannot compare the $languages variable to a string, because $languages is an array.
+
+20
+00:02:40,000 --> 00:02:46,000
+So I don't have to check whether the languages is en for English, I have to check whether the array
+
+21
+00:02:46,000 --> 00:02:57,000
+$languages contains en. There is an array function for that in PHP, of course, it's called in_array, and you
+
+22
+00:02:57,000 --> 00:03:03,000
+see here in the editor, needle, haystack. So needle is what we're looking for, haystack is where we are
+
+23
+00:03:03,000 --> 00:03:12,000
+looking for it. So we are looking for 'en' in which haystack, in languages.
+
+24
+00:03:12,000 --> 00:03:24,000
+So if 'en' is somewhere in the $languages array, so if the user has selected a couple of languages and
+
+25
+00:03:24,000 --> 00:03:33,000
+English is one of them, we preselect that option. And the same thing will be done for the other languages
+
+26
+00:03:33,000 --> 00:03:47,000
+here, we just have to swap out the language code, so 'fr' for French and for Italian we use 'it', and well
+
+27
+00:03:47,000 --> 00:03:58,000
+basically, that's the check, the mandatory check we need to do in order to make this work properly.
+
+28
+00:03:58,000 --> 00:04:07,000
+Finally, we make the output a little bit better because we are still accessing $_POST here, but now we have
+
+29
+00:04:07,000 --> 00:04:15,000
+variables for that anyway, so this will turn into $name. We still need to do the HTML escaping.
+
+30
+00:04:15,000 --> 00:04:21,000
+We are only escaping when we output data, not when processing or validating it.
+
+31
+00:04:21,000 --> 00:04:30,000
+And same thing goes here, this turns into $color. This will turn into $languages, which in that case will
+
+32
+00:04:30,000 --> 00:04:41,000
+already be an array, this will be $comments, and finally, this will be $tc.
+
+33
+00:04:41,000 --> 00:04:47,000
+Now we're pretty good. We started with 30 lines of markup and code, now we have 139.
+
+34
+00:04:47,000 --> 00:04:54,000
+That's quite a bit, but the result should be worth it. Let's fill out the form again.
+
+35
+00:04:54,000 --> 00:05:02,000
+Once again, User name, top secret password, once again, forget to provide our gender, but we do provide a
+
+36
+00:05:02,000 --> 00:05:09,000
+color, a couple of languages, some comments, this is a nice form, accept the terms and conditions.
+
+37
+00:05:09,000 --> 00:05:18,000
+I click on Submit, and you see, the page is reloaded, but the data is still there.
+
+38
+00:05:18,000 --> 00:05:27,000
+If we have a look at the source code, we see that selected has been added here and here and here, and a
+
+39
+00:05:27,000 --> 00:05:35,000
+checkbox is checked, and the user name is prefilled too, so our code worked as expected.
+
+40
+00:05:35,000 --> 00:05:43,000
+Now let's provide a gender, but let's say forget the terms and conditions, it doesn't work,
+
+41
+00:05:43,000 --> 00:05:51,000
+and now I have filled out the form without any errors. I click on Submit and I get the output as expected.
+
+42
+00:05:51,000 --> 00:05:58,000
+So the form now is much nicer. Still some room for improvement, we don't have any design to speak of,
+
+43
+00:05:58,000 --> 00:06:05,000
+we shouldn't show the form if it has been filled out completely, but we have come very, very far with some
+
+44
+00:06:05,000 --> 00:59:00,000
+amounts of PHP code.
+

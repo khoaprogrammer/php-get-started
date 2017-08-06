@@ -1,0 +1,80 @@
+1
+00:00:03,000 --> 00:00:10,000
+We achieved quite a bit in this module, because we were now successfully talking with the database using all
+
+2
+00:00:10,000 --> 00:00:17,000
+the standard database operations with PHP. In order to do so, we first set up our database.
+
+3
+00:00:17,000 --> 00:00:27,000
+We were using phpMyAdmin in order to administer on MySQL Server, one of the most convenient ways of adding
+
+4
+00:00:27,000 --> 00:00:33,000
+databases, users, tables, looking at data, and so on, and so forth.
+
+5
+00:00:33,000 --> 00:00:39,000
+PhpMyAdmin can also be very nicely installed at your hosting provider, but of course, you have to make sure
+
+6
+00:00:39,000 --> 00:00:43,000
+that you're the only one that runs phpMyAdmin in order to administer your databases.
+
+7
+00:00:43,000 --> 00:00:51,000
+So, maybe after configuration of your database, remove phpMyAdmin from your server or use password
+
+8
+00:00:51,000 --> 00:00:58,000
+protection or some other safeguards. After we have set up our database and we've set up our table, we
+
+9
+00:00:58,000 --> 00:01:06,000
+wrote a UI in order for reading data, writing data, updating data, deleting data, using the mysqli_
+
+10
+00:01:06,000 --> 00:01:14,000
+extension PHP provides, and the mysqli functions in order to communicate with the database server.
+
+11
+00:01:14,000 --> 00:01:24,000
+SQL injection is one of the greatest dangers for database-based applications because a user might be able
+
+12
+00:01:24,000 --> 00:01:30,000
+to send malicious content, which in turn is sent to the database and the database interprets it as an SQL
+
+13
+00:01:30,000 --> 00:01:39,000
+command, which we do not want, so we were escaping special characters and thus avoided SQL injection.
+
+14
+00:01:39,000 --> 00:01:45,000
+And, once again, we did not cover the object-oriented interface for the mysqli extension.
+
+15
+00:01:45,000 --> 00:01:52,000
+We also did not cover other extensions which allow us to talk to a MySQL database, but the features set is
+
+16
+00:01:52,000 --> 00:02:01,000
+more or less the same, so you are good to go now and can use PHP to talk to any MySQL database, and you can
+
+17
+00:02:01,000 --> 00:02:08,000
+read data, write data, and do all the operations you want. Although our sample application works as
+
+18
+00:02:08,000 --> 00:02:13,000
+expected, we are still not done. There are so many more features we might want to add.
+
+19
+00:02:13,000 --> 00:02:19,000
+One of them, and that's probably the most pressing one, is authorization/authentication,
+
+20
+00:02:19,000 --> 00:59:00,000
+so it's time to move on.
+

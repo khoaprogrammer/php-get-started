@@ -1,0 +1,144 @@
+1
+00:00:01,000 --> 00:00:11,000
+I once again connect to the database, so mysqli_connect to 'localhost' using
+
+2
+00:00:11,000 --> 00:00:24,000
+our user and also connecting to the php database specifically. Then I copy together the sql string, so
+
+3
+00:00:24,000 --> 00:00:32,000
+sprintf of something, which is to be defined. Now this time I need an update statement, so UPDATE users
+
+4
+00:00:32,000 --> 00:00:42,000
+SET, and then name= value, so I set the name to something using a placeholder, I set the gender to something
+
+5
+00:00:42,000 --> 00:00:48,000
+using a placeholder again, and finally the color to, you guessed it, a placeholder again.
+
+6
+00:00:48,000 --> 00:00:55,000
+Very, very important now, this statement will update each and every record which we obviously do not want,
+
+7
+00:00:55,000 --> 00:01:00,000
+so we need to add a WHERE clause, easy to forget that until you try it.
+
+8
+00:01:00,000 --> 00:01:10,000
+So WHERE id= another placeholder. Next we fill those placeholders, remember we work with data coming from
+
+9
+00:01:10,000 --> 00:01:16,000
+the user, so there might be special characters inside. We need to escape them in order to prevent SQL
+
+10
+00:01:16,000 --> 00:01:28,000
+injection, so we do mysqli_real_escape_string of, in that case, name, and then, once again,
+
+11
+00:01:28,000 --> 00:01:42,000
+mysqli_real_escape_string of the gender, and finally mysqli_real_escape_string of the color.
+
+12
+00:01:42,000 --> 00:01:48,000
+The fourth placeholder is the id, but remember we read the id from the URL so it's user data, however, we
+
+13
+00:01:48,000 --> 00:01:56,000
+checked whether the id only consists of digits, so we know only digits, so we do not need to do additional
+
+14
+00:01:56,000 --> 00:02:04,000
+escaping, so we just put in the id here, we have valid SQL string, which we send to the database using
+
+15
+00:02:04,000 --> 00:02:15,000
+mysqli_query. Afterwards we output what we've done, so User updated.
+
+16
+00:02:15,000 --> 00:02:22,000
+We could also redirect to the overview page, which would be fine as well, but I think this is good enough for now.
+
+17
+00:02:22,000 --> 00:02:34,000
+And finally, we close the connection to the database, which actually we could also do down here, so we
+
+18
+00:02:34,000 --> 00:02:43,000
+close the connection here as well, just some cleaning up, alright.
+
+19
+00:02:43,000 --> 00:02:49,000
+Now next up we need to run the update.php file in our browser, however, if we do so and do not provide an
+
+20
+00:02:49,000 --> 00:02:55,000
+id in the URL, we get redirected to the overview page, hmm, that's what we want, but actually we would like
+
+21
+00:02:55,000 --> 00:03:07,000
+to see the update.php page in action, so we need to provide an id, and we need to add the id when we actually
+
+22
+00:03:07,000 --> 00:03:13,000
+run the page. However, there is one page that already knows all of the id's, because the page knows all of
+
+23
+00:03:13,000 --> 00:03:25,000
+the users, and that's select.php. Here we already output all users, so how about we add an extra link here.
+
+24
+00:03:25,000 --> 00:03:34,000
+Looking like this, a href="update.php". Link text is edit, however, the link doesn't go directly to
+
+25
+00:03:34,000 --> 00:03:42,000
+update.php, but to update.php?id= placeholder. How do we fill that placeholder?
+
+26
+00:03:42,000 --> 00:03:53,000
+Exactly, htmlspecialchars of $row of 'id'. We just read out the id from the database as well, and stuff it
+
+27
+00:03:53,000 --> 00:04:07,000
+into that link. So by updating the overview page, we provide a very convenient link to the update _____.
+
+28
+00:04:07,000 --> 00:04:12,000
+Here we have the overview page from before again, showing just the names at the moment.
+
+29
+00:04:12,000 --> 00:04:20,000
+I reloaded because we changed the select.php page, and now we have to two edit links going to update.php
+
+30
+00:04:20,000 --> 00:04:28,000
+id= 1 and 2. Let's edit debbie. You see the form is already pre-filled with debbie, female, and red as
+
+31
+00:04:28,000 --> 00:04:32,000
+her favorite color. Let's just change her color to, let's say, green.
+
+32
+00:04:32,000 --> 00:04:40,000
+I submit it, and the user has been updated. We can prove that by going back to select.php, and now as you
+
+33
+00:04:40,000 --> 00:04:46,000
+can see, debbie has been updated because now her favorite color is green.
+
+34
+00:04:46,000 --> 00:04:53,000
+So it was a bit of work, there's still some cleaning up which we may want to do, but still, we now since
+
+35
+00:04:53,000 --> 00:05:00,000
+we have learned how to pre-fill a form, how we can also pre-fill an update form and then create the update
+
+36
+00:05:00,000 --> 00:59:00,000
+statement required to update an individual record in our database.
+

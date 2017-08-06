@@ -1,0 +1,196 @@
+1
+00:00:03,000 --> 00:00:11,000
+In the next and final step, we would like to make sure that the form keeps its values after the form has been
+
+2
+00:00:11,000 --> 00:00:19,000
+submitted, so even if we forget a field or have any other error, the valid input still is there.
+
+3
+00:00:19,000 --> 00:00:24,000
+In order to do that, I first have to refactor the code a tiny little bit.
+
+4
+00:00:24,000 --> 00:00:31,000
+I'd like to introduce some variables which contain either the current or the default values for each and
+
+5
+00:00:31,000 --> 00:00:36,000
+every field, and I'll call those variables exactly like the form fields.
+
+6
+00:00:36,000 --> 00:00:45,000
+So I enter the variable $name, I introduce it, and the default value for the name is, well, empty string.
+
+7
+00:00:45,000 --> 00:00:49,000
+right, because as long as the user does not provide a name, there is no name.
+
+8
+00:00:49,000 --> 00:00:58,000
+Same goes for the password, and in our example we will prefill the password field.
+
+9
+00:00:58,000 --> 00:01:04,000
+That's not always a good idea, but just in order to show you how it's done from a technical point of view,
+
+10
+00:01:04,000 --> 00:01:15,000
+that's the path we are choosing this time. The Comments, multi-line field also, is an empty string,
+
+11
+00:01:15,000 --> 00:01:22,000
+Well, the Gender, if there is no Gender selected we have nothing, so empty string sounds like a good idea,
+
+12
+00:01:22,000 --> 00:01:31,000
+same for the terms and conditions. The default color is, well, no color, so empty string.
+
+13
+00:01:31,000 --> 00:01:40,000
+And the only difference here is languages, list of languages we've chosen, because we should not use an empty
+
+14
+00:01:40,000 --> 00:01:48,000
+string here. Rremember $_POST, $_GET of languages is an array with all the selected languages, so we just
+
+15
+00:01:48,000 --> 00:01:53,000
+create an array with no values inside the array, so that's an empty array.
+
+16
+00:01:53,000 --> 00:02:01,000
+So we introduce the variables here, and then we have our validation, and all we do in our validation is, if we
+
+17
+00:02:01,000 --> 00:02:07,000
+determine an error, well, we determine the error, otherwise, if everything is okay we store the user input in
+
+18
+00:02:07,000 --> 00:02:19,000
+the variable, so $name = $_POST of 'name'. So whatever happens, $name contains either the default or the
+
+19
+00:02:19,000 --> 00:02:27,000
+current value for the name field, and we'll do that same thing for all the other form fields, so $password =
+
+20
+00:02:27,000 --> 00:02:43,000
+$_POST of 'password', and we do the same thing for the Comments field, so $comments = $_POST of 'comments'.
+
+21
+00:02:43,000 --> 00:02:52,000
+And it looks a little bit like repetitive work, but in the end it's all worth it, $gender = $_POST of
+
+22
+00:02:52,000 --> 00:03:10,000
+'gender'. Terms and conditions is next, so $tc = $_POST of tc, same for color else, $color = $_POST of
+
+23
+00:03:10,000 --> 00:03:19,000
+'color'. And finally, we have the languages field, so if this has been correctly set, it is an array as we
+
+24
+00:03:19,000 --> 00:03:26,000
+wanted, so $_POST of 'languages' is the array we would like to have.
+
+25
+00:03:26,000 --> 00:03:34,000
+That's the first step, so now we have those variables always with the correct value, and now we can think
+
+26
+00:03:34,000 --> 00:03:43,000
+about actually filling those form fields with those values. We start with text fields.
+
+27
+00:03:43,000 --> 00:03:52,000
+For single line text fields, which also include password fields, we just have to set the value attribute
+
+28
+00:03:52,000 --> 00:03:58,000
+of the those text or password fields to the value that should appear in those fields, that's what the value
+
+29
+00:03:58,000 --> 00:04:04,000
+attribute is good for. It's a little bit different for the multi-line text field that we do not have the
+
+30
+00:04:04,000 --> 00:04:13,000
+input element, we have text area, and the actual content is within the text area element.
+
+31
+00:04:13,000 --> 00:04:21,000
+That's because we then can also have multi-line input and line breaks, which would be harder to do with
+
+32
+00:04:21,000 --> 00:04:26,000
+attributes. Now let's implement this directly in the code.
+
+33
+00:04:26,000 --> 00:04:34,000
+Let's move to those text fields, there we are. Here is the user name text field, and usually what we
+
+34
+00:04:34,000 --> 00:04:42,000
+would need to do is say, value =, and then "abc", but of course we do not use "abc" here, we use what
+
+35
+00:04:42,000 --> 00:04:49,000
+the user previously entered into that field, so we have to output the content from PHP, we have to mix
+
+36
+00:04:49,000 --> 00:04:56,000
+PHP an HTML here, so I just start a php block, close it right away.
+
+37
+00:04:56,000 --> 00:05:02,000
+So whatever that PHP block outputs goes into the value attribute, and now I'll output the value I want,
+
+38
+00:05:02,000 --> 00:05:13,000
+and what's the value I want, well, it's in the $name variable. So I just output $name, and then once again
+
+39
+00:05:13,000 --> 00:05:23,000
+have to remember that there might be HTML special characters inside, so I do an htmlspecialchars($name).
+
+40
+00:05:23,000 --> 00:05:31,000
+Since I enclosed the attributed value with double quotes, I do not need to escape single quotes here, so I
+
+41
+00:05:31,000 --> 00:05:39,000
+do not need the end quotes, constant, which I previously mentioned, so well, that's just good enough here.
+
+42
+00:05:39,000 --> 00:05:46,000
+Same thing holds for the password field, as I mentioned, usually you would not prefill a password field, but
+
+43
+00:05:46,000 --> 00:05:54,000
+for the sake of demonstration we'll do this right away. So php block here, and then within the php block we
+
+44
+00:05:54,000 --> 00:06:03,000
+echo the variable we created previously, htmlspecialchars($password).
+
+45
+00:06:03,000 --> 00:06:09,000
+And practically the same thing here in the comment section, in that case we just do the php block within the
+
+46
+00:06:09,000 --> 00:06:20,000
+text area field, and there we just say echo htmlspecialchars($comments).
+
+47
+00:06:20,000 --> 00:06:30,000
+And there we go, now we've prefilled the form fields. These were the easiest ones, the other types of form
+
+48
+00:06:30,000 --> 00:06:37,000
+fields are a bit more tricky so you have to know HTML a bit more, but once you've done it for a specific
+
+49
+00:06:37,000 --> 00:59:00,000
+instance of a type of field, you could do it for the others as well.
+

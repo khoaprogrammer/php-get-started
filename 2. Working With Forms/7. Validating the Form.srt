@@ -1,0 +1,324 @@
+1
+00:00:02,000 --> 00:00:11,000
+In a perfect world, all forms are filled out completely, there are no errors, no omitted fields, no attacks,
+
+2
+00:00:11,000 --> 00:00:20,000
+everything is fine, but of course, that's just not the reality, so we do need to validate all data coming
+
+3
+00:00:20,000 --> 00:00:26,000
+from the client to the server, because we have to safeguard our application and our server.
+
+4
+00:00:26,000 --> 00:00:32,000
+Thus, we need to validate all form data. For most form fields that's actually pretty easy,
+
+5
+00:00:32,000 --> 00:00:39,000
+we just check if we have non-empty values. So if we have a text field, we have a look whether there is
+
+6
+00:00:39,000 --> 00:00:46,000
+something in the text field or not. We could add some special rules, for instance, three space characters
+
+7
+00:00:46,000 --> 00:00:52,000
+are not considered as valid input, so we could use something like trim removing white space at the
+
+8
+00:00:52,000 --> 00:00:58,000
+beginning and at the end of a string, but basically we can also check is there something within the
+
+9
+00:00:58,000 --> 00:01:05,000
+text field or not. Also, for radio buttons we know that the value of the selected radio button is sent to
+
+10
+00:01:05,000 --> 00:01:12,000
+the server, so if nothing is sent to the server the radio button obviously hasn't been selected, none of them.
+
+11
+00:01:12,000 --> 00:01:19,000
+Also, for checkboxes, if no value arrives at the server, the user didn't activate the checkbox.
+
+12
+00:01:19,000 --> 00:01:27,000
+If the checkbox was mandatory, such as in our example the terms and conditions checkbox, then of course
+
+13
+00:01:27,000 --> 00:01:33,000
+we have a validation error. For lists we need special treatment.
+
+14
+00:01:33,000 --> 00:01:41,000
+For instance, if we have our dropdown list, well, currently we always have to pick one of those colors
+
+15
+00:01:41,000 --> 00:01:47,000
+in the dropdown list, but we could add an extra first entry in the list, a blank entry or an entry that says
+
+16
+00:01:47,000 --> 00:01:53,000
+please select something, and then we need to find out, well, did we pick that entry, bemuse that entry is
+
+17
+00:01:53,000 --> 00:01:59,000
+not valid, it is not valid input, please select something is not a valid input.
+
+18
+00:01:59,000 --> 00:02:06,000
+Also in the multiple-selection list well, we might have a look at which values have been selected and which
+
+19
+00:02:06,000 --> 00:02:11,000
+ones have not been selected. It really depends on the use case, but basically that's what we need to do.
+
+20
+00:02:11,000 --> 00:02:18,000
+Of course, in order to provide a great user experience we should consider using JavaScript to do the form
+
+21
+00:02:18,000 --> 00:02:25,000
+validation. When JavaScript was created in the 1990s, the major use case for JavaScript actually was form
+
+22
+00:02:25,000 --> 00:02:31,000
+validation. Also HTML5 comes with new form validation features.
+
+23
+00:02:31,000 --> 00:02:39,000
+This is pretty nice, and gives immediate feedback to the user if there's an error when entering data into
+
+24
+00:02:39,000 --> 00:02:46,000
+the form fields. However, this is just a usability feature, it does not add any security to the application
+
+25
+00:02:46,000 --> 00:02:54,000
+because an attacker could just deactivate JavaScript or just send the HTTP request anyway, even if the form
+
+26
+00:02:54,000 --> 00:03:02,000
+hasn't been completely and validly filled out, so we always have to validate form data on the server, and
+
+27
+00:03:02,000 --> 00:03:11,000
+that's what we are going to do right now in the code. Our printf statement here shall only be executed if the
+
+28
+00:03:11,000 --> 00:03:20,000
+form has been submitted, that's what we check here, and if everything is okay, and that's what we like to
+
+29
+00:03:20,000 --> 00:03:27,000
+find out. By default, we just assume that everything is okay, and then we try to prove the contrary.
+
+30
+00:03:27,000 --> 00:03:34,000
+In the end we just say, if at the end after validation still everything is okay, then in that case, and only
+
+31
+00:03:34,000 --> 00:03:43,000
+that case, we output the form data, okay. So, okay is true, and then we'll have a look at the individual
+
+32
+00:03:43,000 --> 00:03:51,000
+fields. We start with the text field. Now when is the text field not being filled out properly?
+
+33
+00:03:51,000 --> 00:03:59,000
+First of all, we have to see if there is an entry $_POST of name at all, and we can do this using isset.
+
+34
+00:03:59,000 --> 00:04:15,000
+So if it's not isset($_POST{'name'}), then well, we have an error, so we could set ok to false.
+
+35
+00:04:15,000 --> 00:04:21,000
+However, browsers behave in a specific kind of way with text fields.
+
+36
+00:04:21,000 --> 00:04:28,000
+If we leave the text field blank, $_POST of name is set to, well, nothing, so we have to add a second check
+
+37
+00:04:28,000 --> 00:04:38,000
+for that case or if $_POST equals to, and we use three equality signs, which doesn't only compare those
+
+38
+00:04:38,000 --> 00:04:44,000
+values, but also checks whether both operants have the same data type, the empty string.
+
+39
+00:04:44,000 --> 00:04:52,000
+So if the field hasn't been set, or is empty, ok is false. Now, of course, we could turn $ok into a, let's
+
+40
+00:04:52,000 --> 00:05:00,000
+say, string variable, and not only say whether there have been any errors, but also where those errors are,
+
+41
+00:05:00,000 --> 00:05:06,000
+which fields haven't been filled out completely. We won't do this here because we'd like to make other
+
+42
+00:05:06,000 --> 00:05:14,000
+concepts clear, but still, it would be rather trivial to do. Now let's continue with those other fields,
+
+43
+00:05:14,000 --> 00:05:22,000
+and I can do quite an amount of copy and paste here. I just have to fix the indentation once again, and we
+
+44
+00:05:22,000 --> 00:05:31,000
+go to the password field. The password field counts as a text field, so the code is exactly the same.
+
+45
+00:05:31,000 --> 00:05:40,000
+The same thing, of course, also holds true for the multi-line text field, so for Comments,
+
+46
+00:05:40,000 --> 00:05:49,000
+but it's pretty easy actually. We also have the radio buttons, which is more or less the same code,
+
+47
+00:05:49,000 --> 00:05:59,000
+however, if the radio button value is sent to the server, something must have been picked.
+
+48
+00:05:59,000 --> 00:06:07,000
+Still there could be an attacker that crafts an HTTP request which sends gender, but no value with gender.
+
+49
+00:06:07,000 --> 00:06:16,000
+So just recommend we use exactly the same code here in order to find out whether the gender has been sent,
+
+50
+00:06:16,000 --> 00:06:26,000
+and of course also, because it's related to the radio button, the terms and conditions checkbox has been sent.
+
+51
+00:06:26,000 --> 00:06:35,000
+So far so good, but there's still two more elements, the two lists.
+
+52
+00:06:35,000 --> 00:06:41,000
+We first have the color list, and as I mentioned we add another option, and we say this option just has an
+
+53
+00:06:41,000 --> 00:06:51,000
+empty value. And we add something like, Please select, something like this, right.
+
+54
+00:06:51,000 --> 00:06:58,000
+So we have a first entry which does not count as valid input, and we have to check for that.
+
+55
+00:06:58,000 --> 00:07:06,000
+Now if this value is selected, we have value= empty string, so empty string is sent to the server, so our
+
+56
+00:07:06,000 --> 00:07:17,000
+validation is still true. We can use copy and paste again also for the color selection list, so I just use
+
+57
+00:07:17,000 --> 00:07:28,000
+color here and color here, and we are good. The last one, and probably the most complex one, although it's
+
+58
+00:07:28,000 --> 00:07:35,000
+not that bad, is the multi-selection list, the languages list. What could happen?
+
+59
+00:07:35,000 --> 00:07:45,000
+Well, we could get nothing, so $_POST of languages is not set. In that case we have an error.
+
+60
+00:07:45,000 --> 00:07:52,000
+The second option is that, well, it is sent, but nothing is in that list.
+
+61
+00:07:52,000 --> 00:07:59,000
+So how do we find that out? Technically it's an array, right. So we could check two things.
+
+62
+00:07:59,000 --> 00:08:06,000
+First of all, is it an array? If it's not an array, something went wrong, error, so the form hasn't been
+
+63
+00:08:06,000 --> 00:08:14,000
+filled out completely. And if it is an array, it has to have at least one value in it, one element.
+
+64
+00:08:14,000 --> 00:08:25,000
+And we'll check for all of those cases. So let's go up once more, one final, hopefully, copy and paste,
+
+65
+00:08:25,000 --> 00:08:35,000
+and this time we'll have a look at $_POST of languages. If it's not set, then something is wrong, so
+
+66
+00:08:35,000 --> 00:08:45,000
+$ok is set to false. Otherwise, if it's set, it could be the case that $_POST of languages just is not an array.
+
+67
+00:08:45,000 --> 00:08:50,000
+There's a built-in PHP function to check whether something is an array called is_array.
+
+68
+00:08:50,000 --> 00:08:57,000
+Yes there is an underscore in the function name. There is no underscore in isset.
+
+69
+00:08:57,000 --> 00:09:00,000
+Well, that's just the way it is,  I won't comment further on that.
+
+70
+00:09:00,000 --> 00:09:09,000
+So if $_POST of languages is not an array, then something is wrong, and well, third case, if it's an array
+
+71
+00:09:09,000 --> 00:09:17,000
+it could still be the case thanks to a specifically crafted attack HTTP request, that there are no elements
+
+72
+00:09:17,000 --> 00:09:24,000
+in the array. The count function gives us the number of elements in an array, so if
+
+73
+00:09:24,000 --> 00:09:38,000
+count($_POST{'languages'}) is 0, in that case if we have no elements in the array, then well, something is
+
+74
+00:09:38,000 --> 00:09:47,000
+wrong, so we set $ok to false. So far, so good, let's go to the web browser.
+
+75
+00:09:47,000 --> 00:09:53,000
+Here we go again. We fill out the form and happen to forget a field.
+
+76
+00:09:53,000 --> 00:10:02,000
+Let's say I forget to provide my gender. I provide all of the other values, This is a test, I accept the
+
+77
+00:10:02,000 --> 00:10:09,000
+terms and conditions, but again, I forgot the Gender field, and prior to the form we have the output, right,
+
+78
+00:10:09,000 --> 00:10:17,000
+so I submit the form and no output because I forgot a field. Now let's do this right.
+
+79
+00:10:17,000 --> 00:10:28,000
+This time I do provide my gender. I also provide the other fields, submit the form again, and now I get
+
+80
+00:10:28,000 --> 00:10:37,000
+the output again. So I have a form that validates, more or less, but there is still room for a number of
+
+81
+00:10:37,000 --> 00:59:00,000
+improvements.
+

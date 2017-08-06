@@ -1,0 +1,68 @@
+1
+00:00:02,000 --> 00:00:09,000
+Before we actually write some code, a couple of disclaimers. First of all, there is more than one way to
+
+2
+00:00:09,000 --> 00:00:16,000
+achieve what we want to achieve. We have already decided on using MySQL as the database of choice,
+
+3
+00:00:16,000 --> 00:00:22,000
+however, even that gives us several possibilities of how to talk to the database from PHP.
+
+4
+00:00:22,000 --> 00:00:31,000
+PHP offers a variety of options. We've chosen the most common one, but even that option we chose provides
+
+5
+00:00:31,000 --> 00:00:37,000
+different APIs, an API that uses OOP and an API that uses functions.
+
+6
+00:00:37,000 --> 00:00:45,000
+We've decided to use the function-based API because that seems to be more in line with what we've covered
+
+7
+00:00:45,000 --> 00:00:54,000
+in the previous module. Also, we do not do a lot of error detection or prevention, or even error handling
+
+8
+00:00:54,000 --> 00:01:02,000
+in our sample, because our focus is on how to communicate with the database, so we skipped that for the sake
+
+9
+00:01:02,000 --> 00:01:09,000
+of what we want to achieve here and what we want to learn, but of course, in a real-life project you need to do that
+
+10
+00:01:09,000 --> 00:01:20,000
+definitely. We use XAMPP installation, which as I mentioned previously, comes with an insecure default root user
+
+11
+00:01:20,000 --> 00:01:26,000
+that is allowed to do everything without any password. Of course, that's just the local system, but of
+
+12
+00:01:26,000 --> 00:01:32,000
+course on a system that's accessible from somewhere else, from the outside or from someone else within
+
+13
+00:01:32,000 --> 00:01:39,000
+your own home network, you need to use a different setting, but we skipped that because every system is
+
+14
+00:01:39,000 --> 00:01:48,000
+different and it's hard to give a very, very common guideline here, except from create a unique user that
+
+15
+00:01:48,000 --> 00:01:58,000
+can only access the database we just created _____. And finally, we do not spend a lot of time on designing our UI,
+
+16
+00:01:58,000 --> 00:02:05,000
+well, actually almost no time on designing the UI, so it's not pretty, but it will work and that's the main thing.
+
+17
+00:02:05,000 --> 00:59:00,000
+And with that, let's start.
+

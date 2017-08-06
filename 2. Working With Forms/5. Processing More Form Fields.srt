@@ -1,0 +1,244 @@
+1
+00:00:03,000 --> 00:00:11,000
+Let's next have a look at checkboxes and radio buttons, because they are actually pretty similar.
+
+2
+00:00:11,000 --> 00:00:17,000
+We started the checkbox, so a checkbox has a name hopefully, and a value hopefully.
+
+3
+00:00:17,000 --> 00:00:26,000
+We actually need both of those attributes because if a checkbox is activated by the user and then the form is
+
+4
+00:00:26,000 --> 00:00:32,000
+sent to the server, the value is sent to the server along with the name of the checkbox.
+
+5
+00:00:32,000 --> 00:00:40,000
+If no value is provided, browsers usually just send on just as you can see here to the server, but of course
+
+6
+00:00:40,000 --> 00:00:49,000
+it's always better to be explicit about the data we want to be sent to the server, so always provide a value.
+
+7
+00:00:49,000 --> 00:00:55,000
+So that's what we do with the checkbox. If the checkbox is not activated, nothing is sent to the server,
+
+8
+00:00:55,000 --> 00:00:59,000
+at least not for the checkbox. Other form fields, of course, are still being sent to the server.
+
+9
+00:00:59,000 --> 00:01:07,000
+For radio buttons, remember that all radio buttons within a group have the same name, but different values.
+
+10
+00:01:07,000 --> 00:01:18,000
+The value of the radio button that is selected is sent to the server, once again, in $_GET and $_POST.
+
+11
+00:01:18,000 --> 00:01:23,000
+And it's really important that you have the individual group name.
+
+12
+00:01:23,000 --> 00:01:29,000
+That may not sound very intuitive because all the other form fields have their own names, but again, this
+
+13
+00:01:29,000 --> 00:01:34,000
+piece of information is very important for the browser to be able to tell which radio button belongs to
+
+14
+00:01:34,000 --> 00:01:39,000
+which group. You could have several groups of radio buttons on one page.
+
+15
+00:01:39,000 --> 00:01:45,000
+With that information, let's go back to the code and implement this.
+
+16
+00:01:45,000 --> 00:01:53,000
+The radio buttons have the group name Gender, and the terms and conditions checkbox has the name TC, so
+
+17
+00:01:53,000 --> 00:02:02,000
+so that's exactly what we are using. So Gender is the third placeholder, and now I'll printf string.
+
+18
+00:02:02,000 --> 00:02:13,000
+So let's see here we output $_POST of 'gender'. And terms and conditions are the last placeholder we have, so
+
+19
+00:02:13,000 --> 00:02:26,000
+we add $_POST of 'tc'. We double-check the names because otherwise that's an error not so easy to spot,
+
+20
+00:02:26,000 --> 00:02:33,000
+gender and tc, so this all looks good. Let's go in the browser, because that's where the truth is, and
+
+21
+00:02:33,000 --> 00:02:50,000
+see if that works as expected. Here we go again. User name, topsecret password, Gender, Comments, and
+
+22
+00:02:50,000 --> 00:03:01,000
+finally I accept the terms and conditions, Submit, and we get the Gender, and we get the terms and conditions
+
+23
+00:03:01,000 --> 00:03:11,000
+value. So these fields work pretty well. Only two more to go, the lists.
+
+24
+00:03:11,000 --> 00:03:17,000
+We have two types of lists in our example. We have a dropdown list that we can only select one element and
+
+25
+00:03:17,000 --> 00:03:23,000
+we have a multiple selection list where we can select and arbitrary number of elements.
+
+26
+00:03:23,000 --> 00:03:32,000
+Actually, lists are pretty easy, at least in the dropdown list case, because we, once again, access $_GET,
+
+27
+00:03:32,000 --> 00:03:42,000
+$_POST, and then we get the value of the selected element. If no element is selected, nothing is sent to the
+
+28
+00:03:42,000 --> 00:03:51,000
+server for that form field. If the selected element doesn't have a value, the caption is sent to the server,
+
+29
+00:03:51,000 --> 00:03:57,000
+but again, always explicitly set a value, better safe than sorry.
+
+30
+00:03:57,000 --> 00:04:03,000
+It's a bit more complicated for multiple lists or multi-selection lists.
+
+31
+00:04:03,000 --> 00:04:12,000
+Once again, we access $_POST and $_GET, however, since several elements may have been selected by the user,
+
+32
+00:04:12,000 --> 00:04:20,000
+$_GET or $_POST of name of the list, contains an array this time, not just a single value, an array of
+
+33
+00:04:20,000 --> 00:04:26,000
+values, of 1 value or a 5 values or however many elements have been selected.
+
+34
+00:04:26,000 --> 00:04:32,000
+There is a catch though. This has historic reasons, but well, that's just the way it is and you may have
+
+35
+00:04:32,000 --> 00:04:37,000
+noticed this already in the HTML form we are using, and also here on the slide.
+
+36
+00:04:37,000 --> 00:04:46,000
+If you have a multi-select list, the main attribute needs to end with square brackets.
+
+37
+00:04:46,000 --> 00:04:52,000
+So you cannot just provide a name of list, you have to use list and then opening and closing square brackets.
+
+38
+00:04:52,000 --> 00:05:01,000
+All will work fine in the browser if you omit those square brackets, but the server then doesn't get access
+
+39
+00:05:01,000 --> 00:05:07,000
+to the selected-list elements, only to the last one. So if you select three elements, omit the square
+
+40
+00:05:07,000 --> 00:05:14,000
+brackets, then only the third one will be processed by PHP. Of course, we do not want this, so we need to
+
+41
+00:05:14,000 --> 00:05:19,000
+make sure that the value of the name attribute ends in those square brackets.
+
+42
+00:05:19,000 --> 00:05:28,000
+Apart from that, everything is pretty easy, similar to before, so let's right get to it and go to the code.
+
+43
+00:05:28,000 --> 00:05:34,000
+Let's start with the easier list, the color list, because in that case, well, only one element can be
+
+44
+00:05:34,000 --> 00:05:42,000
+selected, and if there's one it will be in $_POST of 'color'. It's a bit more difficult for the
+
+45
+00:05:42,000 --> 00:05:52,000
+multi-selection list, so just to recall, it's called languages and has square brackets afterwards, that's a
+
+46
+00:05:52,000 --> 00:06:00,000
+necessity. In order to access the array of selected elements, we once again use $_POST of, and then the
+
+47
+00:06:00,000 --> 00:06:06,000
+name, languages. We do not need the square brackets here. Actually, we cannot use them, because then it
+
+48
+00:06:06,000 --> 00:06:13,000
+would not work. We don't need them here in the key for the $_POST array, we just need it in the HTML markup.
+
+49
+00:06:13,000 --> 00:06:20,000
+So this is an array, however, if we output an array, PHP is very clever and just outputs array, the word
+
+50
+00:06:20,000 --> 00:06:28,000
+array, not the contents of the array. Somehow we have to combine those array elements into a string in order to
+
+51
+00:06:28,000 --> 00:06:35,000
+properly output it. There are several ways of doing that, and one way in PHP, which comes in handy here, is
+
+52
+00:06:35,000 --> 00:06:44,000
+a function called implode, and implode takes an array and outputs, or returns in that case, all elements
+
+53
+00:06:44,000 --> 00:06:50,000
+of the array plus a glue string, glue string between each element.
+
+54
+00:06:50,000 --> 00:06:57,000
+A good glue string, for instance, is a space character. So I would like to have all the values from $_POST
+
+55
+00:06:57,000 --> 00:07:07,000
+of 'languages', joined with the space character. It looks good, so let's have a look in the browser if it
+
+56
+00:07:07,000 --> 00:07:21,000
+really looks as good as I think it does. Here we go, again, user name, topsecret password, Gender, arbitrary
+
+57
+00:07:21,000 --> 00:07:31,000
+favorite color, let's use green, some languages spoken, Comments, and finally, we accept the terms and
+
+58
+00:07:31,000 --> 00:07:39,000
+conditions, we submit the form. We get the color code, so we get the value, not the caption, and we get
+
+59
+00:07:39,000 --> 00:07:50,000
+a list of languages which I have selected previously in the multi-selection list.
+
+60
+00:07:50,000 --> 00:07:58,000
+So far we have processed all the data in the form, and now we have to fine-tune it a little bit more and
+
+61
+00:07:58,000 --> 00:59:00,000
+then we have made a very important step.
+

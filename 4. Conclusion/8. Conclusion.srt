@@ -1,0 +1,48 @@
+1
+00:00:03,000 --> 00:00:09,000
+We have added quite a number of little and not so little things to our sample application in this module.
+
+2
+00:00:09,000 --> 00:00:19,000
+So we saw how PHP can include files, external PHP files with code, and also files like HTML or even CSS files
+
+3
+00:00:19,000 --> 00:00:25,000
+with markup or other information, and we saw how to use those files from within our PHP code.
+
+4
+00:00:25,000 --> 00:00:32,000
+We saw in require, require_once, include, include_once, and readfile.
+
+5
+00:00:32,000 --> 00:00:41,000
+Also, we had a look at the Password Hashing API, which is a super easy way to actually store passwords in
+
+6
+00:00:41,000 --> 00:00:49,000
+a secure fashion, so much better than MD5 or SHA1 or some of the other hashing algorithms or even storing
+
+7
+00:00:49,000 --> 00:00:57,000
+passwords in clear text, which is certainly a very bad idea. Then we had a look at sessions and saw how
+
+8
+00:00:57,000 --> 00:01:05,000
+easy it is to use sessions from PHP code, you just have to start session support and then have the $_SESSION
+
+9
+00:01:05,000 --> 00:01:14,000
+array where we can write stuff to and read stuff from, and this array is retrieved and is retained between
+
+10
+00:01:14,000 --> 00:01:22,000
+individual HTTP request, so we keep the data within that array. And finally, and most importantly, I hope you
+
+11
+00:01:22,000 --> 00:01:31,000
+enjoyed getting started with PHP, and I wish you a lot of fun with this language and all of the tools and
+
+12
+00:01:31,000 --> 00:59:00,000
+libraries around that, and happy PHP'ing.
+

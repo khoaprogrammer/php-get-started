@@ -1,0 +1,108 @@
+1
+00:00:02,000 --> 00:00:12,000
+Let's try out include files, and specifically including files with HTML or CSS so we have to use a readfile.
+
+2
+00:00:12,000 --> 00:00:19,000
+One idea, for instance, would be that we have a common navigation for all pages within our small sample
+
+3
+00:00:19,000 --> 00:00:29,000
+application. So let's do exactly that. I will add a new file and well I could call it HTMl File, I could
+
+4
+00:00:29,000 --> 00:00:36,000
+also give it a specific file extension so that I know exactly that it's something I include, but
+
+5
+00:00:36,000 --> 00:00:46,000
+it depends on a variety of factors. I'll just call it navigation.tmpl, for template, .html.
+
+6
+00:00:46,000 --> 00:00:55,000
+And in that file I will create a very, very simple navigation to be used in our application, so I'll just
+
+7
+00:00:55,000 --> 00:01:07,000
+do an unordered list, and each list element is a link to one of those pages we've worked on before, so I'll
+
+8
+00:01:07,000 --> 00:01:17,000
+just call them according to the SQL statements they represent. So we have INSERT, we have SELECT,
+
+9
+00:01:17,000 --> 00:01:30,000
+we also had UPDATE, and finally, we had DELETE. So I create this and then I will add some CSS.
+
+10
+00:01:30,000 --> 00:01:36,000
+I could add the CSS to a global CSS file for the application, but just for the sake of simplicity and so
+
+11
+00:01:36,000 --> 00:01:42,000
+that we have everything in one file, I'll just add it directly to the template.
+
+12
+00:01:42,000 --> 00:01:50,000
+And what I'm doing here is basically telling the browser how to display the list, because I want that don't
+
+13
+00:01:50,000 --> 00:01:55,000
+have those bullet point things, and I also would like to have the list items next to each other, not
+
+14
+00:01:55,000 --> 00:02:07,000
+underneath each other. So I will just do a rule that says, list-style-type equals to none, so I don't want
+
+15
+00:02:07,000 --> 00:02:19,000
+to have bullets. And also what I'd like to have is that the individual list items that they are next to
+
+16
+00:02:19,000 --> 00:02:27,000
+each other, and I can do this by telling them to display, not as a block element, as they would usually be,
+
+17
+00:02:27,000 --> 00:02:37,000
+but as an inline element. So that's my template, navigation.tmpl.html, and wherever I would like to have
+
+18
+00:02:37,000 --> 00:02:47,000
+that template I can call readfile. So let's maybe start with the insert.php page.
+
+19
+00:02:47,000 --> 00:02:52,000
+A good position for the navigation would be at the very top, so right here.
+
+20
+00:02:52,000 --> 00:03:06,000
+So I could do readfile, and then 'navigation.tmpl.html', and this will load the navigation right away.
+
+21
+00:03:06,000 --> 00:03:13,000
+I'll copy that to the clipboard, and I'll add it to the other files as well so that we have the same
+
+22
+00:03:13,000 --> 00:03:25,000
+navigation in all of our four pages of our application. I just have to put this within php right here,
+
+23
+00:03:25,000 --> 00:03:33,000
+because it's php code. And finally, delete.php, that's a page with very little code, and now let's add some
+
+24
+00:03:33,000 --> 00:03:45,000
+extra code. I will call to readfile. And that basically adds the functionality to our application.
+
+25
+00:03:45,000 --> 00:03:50,000
+Let's validate our efforts in the browser. So we'll go to localhost/php-get-started and then say
+
+26
+00:03:50,000 --> 00:04:00,000
+select.php, and indeed, we have our navigation here at the top and we have it on every page, so including
+
+27
+00:04:00,000 --> 00:59:00,000
+the external file worked very well for us.
+

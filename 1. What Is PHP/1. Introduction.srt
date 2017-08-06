@@ -1,0 +1,172 @@
+1
+00:00:01,000 --> 00:00:10,000
+Hi, and welcome to Pluralsight. My name is Christian Wenz, and I would like to help you get started with
+
+2
+00:00:10,000 --> 00:00:18,000
+PHP, the world's most loved and most used web-scripting language.
+
+3
+00:00:18,000 --> 00:00:25,000
+During the course of this module, I will give you some background information on PHP, tell you why it is so
+
+4
+00:00:25,000 --> 00:00:32,000
+popular, and then install PHP on a web server so that it can serve PHP content.
+
+5
+00:00:32,000 --> 00:00:40,000
+Once everything has been set up and is working properly, we'll do an obligatory Hello World! application,
+
+6
+00:00:40,000 --> 00:00:47,000
+however, it's a more sophisticated version of Hello World! than you may have seen before.
+
+7
+00:00:47,000 --> 00:00:57,000
+But what better way to start talking about PHP than with a quote by the man himself, Rasmus Lardorf, the
+
+8
+00:00:57,000 --> 00:01:07,000
+inventor, creator, and first developer of PHP. He once said, "I've never thought of PHP as more than a
+
+9
+00:01:07,000 --> 00:01:18,000
+simple tool to solve problems", and that's exactly the approach and the vision of PHP, to solve problems in a
+
+10
+00:01:18,000 --> 00:01:26,000
+very pragmatic, but still good to high quality fashion. Lerdorf, back then when he created PHP, had a
+
+11
+00:01:26,000 --> 00:01:33,000
+problem to solve himself. He wanted to _____ dynamic content of his web server, but didn't want to use Perl
+
+12
+00:01:33,000 --> 00:01:40,000
+or the other technologies dominant at that time for that purposes, so he created his own language, which
+
+13
+00:01:40,000 --> 00:01:49,000
+would eventually become PHP. He first chatted with his peers, and then he chatted with the world, and the
+
+14
+00:01:49,000 --> 00:01:58,000
+next step was world domination. PHP is very popular. It's used by both smaller websites, smaller blogs,
+
+15
+00:01:58,000 --> 00:02:05,000
+more simple applications, up to very, very large and very complex websites such as Facebook, for instance,
+
+16
+00:02:05,000 --> 00:02:17,000
+who use PHP a lot. So, PHP is very pragmatic, quite easy to get into, so you do not need a formal background in
+
+17
+00:02:17,000 --> 00:02:26,000
+computer science to create excellent PHP applications. For this course, you will just need some basic HTML
+
+18
+00:02:26,000 --> 00:02:34,000
+knowledge and a knowledge of any programming language doesn't hurt, but it's not utterly required.
+
+19
+00:02:34,000 --> 00:02:43,000
+Now let's have a look about what PHP generally is and let's have a look at more information on that.
+
+20
+00:02:43,000 --> 00:02:54,000
+PHP stands for PHP: Hypertext Preprocessor, and the approach PHP is using can be seen in that definition.
+
+21
+00:02:54,000 --> 00:03:03,000
+PHP is usually embedded into hypertext, meaning into HTML, and PHP is actually a preprocessor, so PHP
+
+22
+00:03:03,000 --> 00:03:12,000
+then has a look at that HTML with some PHP code in it, and then works on that PHP code and executes it.
+
+23
+00:03:12,000 --> 00:03:26,000
+PHP's home page is php.net, not .com, php.net, and that website contains a lot of information about the language.
+
+24
+00:03:26,000 --> 00:03:32,000
+The Home page features the latest versions of PHP, so at the time of recording this, the most recent version
+
+25
+00:03:32,000 --> 00:03:41,000
+is 5.5.15. It will certainly be a higher version number once you are watching this.
+
+26
+00:03:41,000 --> 00:03:48,000
+We also have access to the documentation, which is very exhaustive, get information about upcoming
+
+27
+00:03:48,000 --> 00:03:55,000
+conferences, and much more information.
+
+28
+00:03:55,000 --> 00:04:05,000
+Depending on which statistics you're using, you can say PHP has a market share of more or less 40% of the web,
+
+29
+00:04:05,000 --> 00:04:14,000
+40%, so 2 out of 5 websites run with PHP. That's an enormous number, and that's higher than any other
+
+30
+00:04:14,000 --> 00:04:30,000
+competing technologies. One way of looking at the dominance of PHP is by referring to the TIOBE index.
+
+31
+00:04:30,000 --> 00:04:39,000
+The creators of this index use a variety of sources and technologies and measurements and metrics in order
+
+32
+00:04:39,000 --> 00:04:47,000
+to create a monthly list of the most widely used programming languages, general programming languages, not
+
+33
+00:04:47,000 --> 00:04:58,000
+just web programming languages. So currently we have the TIOBE index of August 2014, and PHP is on position
+
+34
+00:04:58,000 --> 00:05:03,000
+number 8, which is pretty good. One year ago it was even number 5.
+
+35
+00:05:03,000 --> 00:05:13,000
+Now since the beginnings of that index, since 1999, PHP has always been in the top 10, which is an amazing
+
+36
+00:05:13,000 --> 00:05:21,000
+achievement, especially considering how many very well-known programming languages are in that index
+
+37
+00:05:21,000 --> 00:05:32,000
+as well, and also how many well-known programming languages are behind PHP in that index.
+
+38
+00:05:32,000 --> 00:05:41,000
+Probably one of the main reasons why PHP is so popular is that it supports most operating systems and most
+
+39
+00:05:41,000 --> 00:05:51,000
+web servers. So PHP runs under Linux, under Windows, under Mac OSX, under Solaris, under other even more
+
+40
+00:05:51,000 --> 00:06:00,000
+exotic operating systems, and it supports the Apache web server, the IIS web server from Microsoft, and many more.
+
+41
+00:06:00,000 --> 00:06:09,000
+So we have a web scripting language that is rather easy to learn, it's proven in the real world, it has a
+
+42
+00:06:09,000 --> 00:06:17,000
+huge market share, and a legion of developers that can help out each other, it is in the top 10 since over
+
+43
+00:06:17,000 --> 00:59:00,000
+15 years, and runs almost anywhere, so it's a pretty safe bet to use PHP.
+

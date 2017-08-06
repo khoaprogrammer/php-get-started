@@ -1,0 +1,200 @@
+1
+00:00:02,000 --> 00:00:09,000
+Reading information from the database requires an extra step. The first step is easy.
+
+2
+00:00:09,000 --> 00:00:18,000
+We, once again, use mysqli_query and send a statement to the database, this time a SELECT statement with
+
+3
+00:00:18,000 --> 00:00:24,000
+previous PHP versions, what you now had to do was you had to use a while loop and then slowly iterate
+
+4
+00:00:24,000 --> 00:00:31,000
+over the database results, and it looked a bit weird and was especially a bit tricky to understand if you
+
+5
+00:00:31,000 --> 00:00:39,000
+were very new to PHP or knew other languages where this is so much easier, however, the mysqli extension also
+
+6
+00:00:39,000 --> 00:00:47,000
+provides a very, very convenient feature, and that feature is that you can iterate over the return value
+
+7
+00:00:47,000 --> 00:00:55,000
+from mysqli_query, if there are return values, with a foreach loop, so very, very easy.
+
+8
+00:00:55,000 --> 00:01:02,000
+That's how a foreach loop looks in PHP, a tiny bit different from some other languages.
+
+9
+00:01:02,000 --> 00:01:11,000
+So in the foreach loop, the first argument is the list of items you would like to iterate over.
+
+10
+00:01:11,000 --> 00:01:19,000
+Then we use the keyword as. And the next argument is a variable that doesn't need to exist before.
+
+11
+00:01:19,000 --> 00:01:26,000
+That variable will hold the current value in each iteration of the loop.
+
+12
+00:01:26,000 --> 00:01:38,000
+So foreach ($result as $row) means iterate over $result, and for each iteration put the current element in $row.
+
+13
+00:01:38,000 --> 00:01:50,000
+In our case, $row is an array that holds all values from the current entry, the current record in the result set.
+
+14
+00:01:50,000 --> 00:01:58,000
+So if we had a table with two columns, "co11" and "col2", then we could use that array syntax here in order
+
+15
+00:01:58,000 --> 00:02:07,000
+to access the values in those columns in the current record. So pretty easy, send SELECT statements
+
+16
+00:02:07,000 --> 00:02:13,000
+to the database, and then iterate over the result in order to get all data so you can process the data and,
+
+17
+00:02:13,000 --> 00:02:20,000
+for instance, output all the data you got from the database.
+
+18
+00:02:20,000 --> 00:02:26,000
+Let's start with a very simple UI to list all users currently in our database.
+
+19
+00:02:26,000 --> 00:02:36,000
+I will just add a new PHP File, which I will call select, because we are sending a SELECT statement to the
+
+20
+00:02:36,000 --> 00:02:46,000
+database. I'll start with some basic HTML, because we need an html file essentially.
+
+21
+00:02:46,000 --> 00:02:56,000
+And as title we'll use PHP once again, and in the body section all the magic will eventually happen.
+
+22
+00:02:56,000 --> 00:03:04,000
+I think the good way to output just the list of users is to use an unordered list, and in that unordered list
+
+23
+00:03:04,000 --> 00:03:17,000
+we have list items like this, maybe rasmus who is (male), and in order to show the favorite color as well,
+
+24
+00:03:17,000 --> 00:03:24,000
+we could invent this in a &lt;span&gt; element, and that &lt;span&gt; element will get a style.
+
+25
+00:03:24,000 --> 00:03:34,000
+The style is color, whatever, blue for instance. So that's what I'd like to output, but of course I need
+
+26
+00:03:34,000 --> 00:03:39,000
+some PHP for that. So let's start with a php block right in here.
+
+27
+00:03:39,000 --> 00:03:47,000
+We could do some generic stuff like connecting to the database at the very top of the page, for instance,
+
+28
+00:03:47,000 --> 00:03:54,000
+or even in an external file, but for now we just put it right in here so we'll see everything on first look.
+
+29
+00:03:54,000 --> 00:04:06,000
+Once again, we connect to the database with mysqli_connect. The database is running at 'localhost' using
+
+30
+00:04:06,000 --> 00:04:14,000
+the 'root' user and a not-so-secure password, and we'll use the database php.
+
+31
+00:04:14,000 --> 00:04:29,000
+And our statement is pretty simple. It's SELECT * FROM users. Well, this will be sent to the database
+
+32
+00:04:29,000 --> 00:04:40,000
+using mysqli_query, and we get our result back. And now we can iterate over that result.
+
+33
+00:04:40,000 --> 00:04:48,000
+So, foreach ($result as $row). It doesn't matter how I call _____ variable, but that's the name that I will
+
+34
+00:04:48,000 --> 00:04:59,000
+be using within the foreach loop. And well now I have to output a list element for each row in that result set.
+
+35
+00:04:59,000 --> 00:05:11,000
+So I could use printf, and within printf I just paste the string, however, I do not say color: blue, I say
+
+36
+00:05:11,000 --> 00:05:21,000
+color and then a placeholder. Same goes for the name, which gets a placeholder, and the gender.
+
+37
+00:05:21,000 --> 00:05:26,000
+And after I've done that, of course I need values for those three placeholders.
+
+38
+00:05:26,000 --> 00:05:41,000
+They are in $row of, first up is the 'color', and then we have $row of, next up is the 'name'.
+
+39
+00:05:41,000 --> 00:05:56,000
+And finally we have $row of the 'gender'. However, remember that's data in the database, so all database
+
+40
+00:05:56,000 --> 00:06:02,000
+special characters have to be properly escaped, but maybe not html special characters, so we need to escape
+
+41
+00:06:02,000 --> 00:06:12,000
+those before outputting it. Do not forget this. So we have htmlspecialchars, which we will put around each
+
+42
+00:06:12,000 --> 00:06:23,000
+of those three values, fix the indentation, close the parentheses, and now we are done.
+
+43
+00:06:23,000 --> 00:06:29,000
+We connect to the database, we send the SELECT statement to the database, we iterate over the result, output
+
+44
+00:06:29,000 --> 00:06:40,000
+it, well and at the end, of course, we can close the database connection.
+
+45
+00:06:40,000 --> 00:06:49,000
+Let's try this out in the browser. _____the insert form, we'll now go to select.php, and indeed, we get a
+
+46
+00:06:49,000 --> 00:06:56,000
+list with two items, two entries, because we happen to have two names in the database.
+
+47
+00:06:56,000 --> 00:07:04,000
+We see rasmus in blue, debbie in red, and if we have a look at the page source, we also see that the color,
+
+48
+00:07:04,000 --> 00:07:12,000
+the name, the gender, they've all been put into that string, into that list element, and we have two list
+
+49
+00:07:12,000 --> 00:07:21,000
+elements which were printed using our PHP code. So reading out the data has been pretty easy so far.
+
+50
+00:07:21,000 --> 00:59:00,000
+Let's continue with other SQL statements.
+

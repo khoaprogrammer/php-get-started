@@ -1,0 +1,256 @@
+1
+00:00:03,000 --> 00:00:10,000
+In order to output form field input from PHP, we have to look at each and every form field and see how we
+
+2
+00:00:10,000 --> 00:00:17,000
+can access the data in there. We'll start with the text fields, single-line text, password, and multi-line
+
+3
+00:00:17,000 --> 00:00:26,000
+text. Basically, that's true for all form fields. In PHP we have two superglobal arrays.
+
+4
+00:00:26,000 --> 00:00:32,000
+they're called superglobal because they're also available in functions without us needing to do something
+
+5
+00:00:32,000 --> 00:00:40,000
+extra, which is different from regular global variables in PHP, so these are superglobal variables.
+
+6
+00:00:40,000 --> 00:00:51,000
+$_ GET holds all get data, so data appended to the URL. $_POST contains all HTTP POST data, all HTTP POST
+
+7
+00:00:51,000 --> 00:01:00,000
+information. Since our form is using the POST HTTP method, we will use $_POST.
+
+8
+00:01:00,000 --> 00:01:13,000
+Now this is an array, and the names of the form fields are the array keys, so we have to make sure that, of
+
+9
+00:01:13,000 --> 00:01:20,000
+course, every form field that we would like to process on the server does have its name attribute set, and
+
+10
+00:01:20,000 --> 00:01:26,000
+we also have to remember the value in that name attribute, because then if we use the element's name as the
+
+11
+00:01:26,000 --> 00:01:35,000
+array key, we get the actual information within the form field as the array value.
+
+12
+00:01:35,000 --> 00:01:46,000
+So say we have input type="text" name="txt", then $_POST of text or $_GET of text will give us the value
+
+13
+00:01:46,000 --> 00:01:53,000
+that was entered into the form field before the form has been submitted to the server, either using POST or
+
+14
+00:01:53,000 --> 00:02:00,000
+GET. From then we decide which of the two arrays we are choosing.
+
+15
+00:02:00,000 --> 00:02:06,000
+This general rule holds true for all text fields. So even for password fields, you cannot see the password
+
+16
+00:02:06,000 --> 00:02:15,000
+which the user inputs, however, it sends to the server in clear text so you can access it using $_GET or
+
+17
+00:02:15,000 --> 00:02:22,000
+$_POST. It's also true for buttons, so we have a Submit button. The Submit button also happens to have a
+
+18
+00:02:22,000 --> 00:02:31,000
+name and a value, because the value is the caption of the Submit button, so we can access, well, the value of
+
+19
+00:02:31,000 --> 00:02:37,000
+the Submit button clicked. This doesn't sound very interesting, however, there are two advantages of that
+
+20
+00:02:37,000 --> 00:02:43,000
+approach. First of all, if we happen to have several Submit buttons for one form, we can find out which of
+
+21
+00:02:43,000 --> 00:02:51,000
+those has been clicked. And even if there's only one Submit button in the form, if the value of that Submit
+
+22
+00:02:51,000 --> 00:02:57,000
+button is sent back to the server, we know that the form has been submitted, so that's an easy way to find
+
+23
+00:02:57,000 --> 00:03:07,000
+out, and that's what we'll do right now. Remember, our form has a Submit button with its name attribute set
+
+24
+00:03:07,000 --> 00:03:15,000
+to Submit, so we can use that information in order to find out whether the form has been submitted
+
+25
+00:03:15,000 --> 00:03:27,000
+when we process form.php or not. In order to do that, I just add a php section in here, and I check if
+
+26
+00:03:27,000 --> 00:03:35,000
+$_POST, because we're using POST, of submit has been set. In some other languages we would just try to
+
+27
+00:03:35,000 --> 00:03:43,000
+compare this to null, but in PHP we use a specific function for that called isset.
+
+28
+00:03:43,000 --> 00:03:56,000
+So if (isset($_POST{'submit'}), so if this is set, in that case we can be sure, well, the form has been
+
+29
+00:03:56,000 --> 00:04:09,000
+submitted, so process form, and here we can, let's say, output all the data that has been sent alongside the form.
+
+30
+00:04:09,000 --> 00:04:17,000
+We can individually output stuff using echo, but I'd like to use a different function here for output, one that is
+
+31
+00:04:17,000 --> 00:04:26,000
+very well-known in the C world actually, it's called printf. Printf takes a string, and that string contains
+
+32
+00:04:26,000 --> 00:04:33,000
+placeholders. There are several options for placeholders, but I'm using this placeholder, %s, s stands for
+
+33
+00:04:33,000 --> 00:04:42,000
+string. So we have a variety of placeholders, and after that we just add parameters to the printf function
+
+34
+00:04:42,000 --> 00:04:51,000
+call and this is the value for placeholder 1, and this is the value for placeholder 2.
+
+35
+00:04:51,000 --> 00:04:58,000
+I do this in order to be able to easily output all the data from the form.
+
+36
+00:04:58,000 --> 00:05:03,000
+Let's start with the actual text I'd like to output. So I'd like to output what the user entered, so I'd
+
+37
+00:05:03,000 --> 00:05:14,000
+like to output User name, and well, then the actual value. Afterwards I would like to output, and I'll do
+
+38
+00:05:14,000 --> 00:05:19,000
+this in a new line so we can read it a little bit better, the password.
+
+39
+00:05:19,000 --> 00:05:23,000
+You shouldn't output the password in clear text, but here, for the sake of the example, we'll do that,
+
+40
+00:05:23,000 --> 00:05:30,000
+placeholder, and then we just have to overwrite auto-completion here.
+
+41
+00:05:30,000 --> 00:05:36,000
+I'd like to output the gender, so I have gender in the placeholder for gender.
+
+42
+00:05:36,000 --> 00:05:41,000
+I'd like to output the favorite color and have a placeholder for that.
+
+43
+00:05:41,000 --> 00:05:50,000
+Also I'd like to output the language or languages, and as you guess, I have a placeholder for that.
+
+44
+00:05:50,000 --> 00:05:58,000
+Then further down in the form we have two interesting fields. We have the Comments text area and we have
+
+45
+00:05:58,000 --> 00:06:09,000
+the checkbox, so let's start with the Comments and the placeholder, and finally, we output whether the terms
+
+46
+00:06:09,000 --> 00:06:18,000
+and conditions have been accepted, so I do T&amp;amp;C. I have to encode the ampersand character in HTML,
+
+47
+00:06:18,000 --> 00:06:22,000
+because it's HTML output, and then again, one final placeholder.
+
+48
+00:06:22,000 --> 00:06:30,000
+Now how many placeholders do we have? I count 7, so we need 7 string parameters afterwards, so we have
+
+49
+00:06:30,000 --> 00:06:44,000
+number 1, number 2, number 3, number 4, number 5, number 6, and number 7.
+
+50
+00:06:44,000 --> 00:06:54,000
+So far so good, and now we can start filling those placeholders with actual values.
+
+51
+00:06:54,000 --> 00:06:58,000
+We started with text fields, that was our intention, so we have three text fields here.
+
+52
+00:06:58,000 --> 00:07:08,000
+We have the user name and the user name is the first placeholder, so we just do a $_POST of 'name', because
+
+53
+00:07:08,000 --> 00:07:19,000
+the field is called name. The password, second placeholder, is $_POST of password, because that's how I
+
+54
+00:07:19,000 --> 00:07:27,000
+called the field. Then we have Gender, Color, Languages, which we'll call later, and then we have the Comments
+
+55
+00:07:27,000 --> 00:07:38,000
+field. Comments placeholder is filled with $_POST of 'comments', because that's how the field has been called.
+
+56
+00:07:38,000 --> 00:07:44,000
+So, at the moment we process we output three out of those seven fields, that's a good start.
+
+57
+00:07:44,000 --> 00:07:51,000
+There's still some stuff to do, including some security concerns, so please make sure to watch the module
+
+58
+00:07:51,000 --> 00:07:58,000
+until it's very end, but this is a good start, so let's have a look how this looks in the browser.
+
+59
+00:07:58,000 --> 00:08:05,000
+Let's fill out those three form fields we covered. So we have a user name, let's say christian.
+
+60
+00:08:05,000 --> 00:08:11,000
+We have a password, let's say topsecret, whoops, I let you into my topsecret password.
+
+61
+00:08:11,000 --> 00:08:21,000
+And I have some Comments like, This is a nice form. I click on Submit, I ignore all the other fields so far,
+
+62
+00:08:21,000 --> 00:08:31,000
+it goes back to the server, and indeed, the User name, the Password, and finally the Comments are output.
+
+63
+00:08:31,000 --> 00:08:41,000
+It's not pretty, but it works pretty well, so let's go back to the code and process the other form field types.
+
+64
+00:08:41,000 --> 00:59:00,000
+But before we do so, we will have a look at those types and what we need to do with them.
+

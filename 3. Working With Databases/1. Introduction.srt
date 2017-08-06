@@ -1,0 +1,60 @@
+1
+00:00:01,000 --> 00:00:11,000
+Hello, and welcome to Working With Databases. After we've set up our PHP system and learned the basics of
+
+2
+00:00:11,000 --> 00:00:19,000
+working with forms, we would like to process form data even further, and that's where databases come into play.
+
+3
+00:00:19,000 --> 00:00:27,000
+We'll first set up a database and we will use a web-based tool, which also uses PHP by the way, called
+
+4
+00:00:27,000 --> 00:00:36,000
+phpMyAdmin. Then we'll do the standard database operations. We will insert data, we will read the data
+
+5
+00:00:36,000 --> 00:00:45,000
+back from the database, we'll update the information in the database, and finally, we will delete the data.
+
+6
+00:00:45,000 --> 00:00:50,000
+However, before we even try to connect to our database, it has to run first.
+
+7
+00:00:50,000 --> 00:00:58,000
+So, if you haven't done it already, make sure that your database is running properly on your system.
+
+8
+00:00:58,000 --> 00:01:05,000
+In my case, I have XAMPP installed here, as we saw previously, and as you can see here in the Apache control
+
+9
+00:01:05,000 --> 00:01:13,000
+panel as part of the XAMPP Control Panel, Apache is running, so the web server is already there and works,
+
+10
+00:01:13,000 --> 00:01:20,000
+however, what does not work is the database yet, MySQL. So what I'll do is I'll start the database and after
+
+11
+00:01:20,000 --> 00:01:29,000
+a short MySQL is backgrounded with green, so it's running and we can work with the database.
+
+12
+00:01:29,000 --> 00:01:35,000
+It might look different on your system, you might need to go to Windows Services, for instance, and then
+
+13
+00:01:35,000 --> 00:01:41,000
+start the MySQL service if you haven't started _____ service on other systems the database might need to be
+
+14
+00:01:41,000 --> 00:01:47,000
+run manually from the command line. It depends on your system, but just make sure that the database runs,
+
+15
+00:01:47,000 --> 00:59:00,000
+and from then on you can continue.
+

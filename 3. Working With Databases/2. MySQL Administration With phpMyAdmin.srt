@@ -1,0 +1,184 @@
+1
+00:00:02,000 --> 00:00:09,000
+In order to configure the database and create a new database for our PHP code, we need to administer
+
+2
+00:00:09,000 --> 00:00:17,000
+MySQL. One of the most convenient ways to do so, and one that runs on virtually every platform that has a
+
+3
+00:00:17,000 --> 00:00:22,000
+web server in PHP, which means every platform, is to use phpMyAdmin.
+
+4
+00:00:22,000 --> 00:00:29,000
+PhpMyAdmin is an open source, web-based administration tool for MySQL.
+
+5
+00:00:29,000 --> 00:00:36,000
+You can download the source code from phpmyadmin.net, and in most cases you just have to unzip the source
+
+6
+00:00:36,000 --> 00:00:45,000
+code into your web folder and, well, then run the index.php file and you'll get a very beautiful, slick, and
+
+7
+00:00:45,000 --> 00:00:52,000
+very functional interface where you can have access to all the tables that are part of your MySQL
+
+8
+00:00:52,000 --> 00:00:59,000
+installation. You can create new databases, you can import and export data, you can add users, and so on and
+
+9
+00:00:59,000 --> 00:01:11,000
+so forth, very convenient, so that's why we use this very tool to set up a new database for our PHP code.
+
+10
+00:01:11,000 --> 00:01:18,000
+If you're using XAMPP, this is how phpMyAdmin looks when you run it directly from your XAMPP installation,
+
+11
+00:01:18,000 --> 00:01:24,000
+because XAMPP does come with phpMyAdmin installed and already configured for you, just run
+
+12
+00:01:24,000 --> 00:01:31,000
+localhost/phpmyadmin in your browser and you're done. If you've installed it manually, chances are that you
+
+13
+00:01:31,000 --> 00:01:39,000
+get a login screen where you login with your MySQL credentials. By default, the XAMPP installation is a
+
+14
+00:01:39,000 --> 00:01:46,000
+very insecure setup. It's using a user called root and an empty password.
+
+15
+00:01:46,000 --> 00:01:53,000
+Of course, that's not secure at all, however, that's the way the default setup is, and we will use this
+
+16
+00:01:53,000 --> 00:01:58,000
+default setup for our experiments here, so I will stick to that setup.
+
+17
+00:01:58,000 --> 00:02:06,000
+Of course, you can create a user of your own, and if you have a hosting partner where you'll eventually host
+
+18
+00:02:06,000 --> 00:02:11,000
+your website, then you will have a database there and you will have a specific user name and password
+
+19
+00:02:11,000 --> 00:02:19,000
+credentials for that database so you have to use that. So just adapt it to your needs, I'll use the easiest,
+
+20
+00:02:19,000 --> 00:02:27,000
+but of course not secure way, just for the sake of simplicity and not to waste time with too much setup.
+
+21
+00:02:27,000 --> 00:02:32,000
+Now let's have a look at the phpMyAdmin Home page. We'll have a couple of tables already installed as part
+
+22
+00:02:32,000 --> 00:02:40,000
+of the default installation. We see some general information about the server and in the top bar we can go
+
+23
+00:02:40,000 --> 00:02:47,000
+to the databases section where we'll see a list of databases, and we can also create a new database, and
+
+24
+00:02:47,000 --> 00:02:54,000
+that's what I'm about to do. So I create a new database, I'll call it php, click on Create, and then that
+
+25
+00:02:54,000 --> 00:03:04,000
+database php has been created, it turns up down here. If I click on the database name, I can create tables.
+
+26
+00:03:04,000 --> 00:03:11,000
+On one database I can several tables and a database server, as we have one here, can hold several databases.
+
+27
+00:03:11,000 --> 00:03:19,000
+Now let's create a table for a small example. This example will be based on the form example from the
+
+28
+00:03:19,000 --> 00:03:27,000
+previous module where we stored users, so how about calling that table users, which will have a number of
+
+29
+00:03:27,000 --> 00:03:35,000
+columns. Now for the sake of simplicity, we will not store all of that form from the previous module in the
+
+30
+00:03:35,000 --> 00:03:42,000
+database. Instead, we'll just store select data from it, so I would say we will have four columns which we
+
+31
+00:03:42,000 --> 00:03:50,000
+want to use, and these four columns are as follows. First of all we have an id column, a column that will
+
+32
+00:03:50,000 --> 00:03:56,000
+eventually hold an _____ value and identifier for our database entry.
+
+33
+00:03:56,000 --> 00:04:04,000
+This will be important later on. Now, if you scroll a little bit to the right, we see a couple of
+
+34
+00:04:04,000 --> 00:04:13,000
+attributes that we can set for the database field, and one of it is A_I, auto-increment, so essentially
+
+35
+00:04:13,000 --> 00:04:18,000
+we'll say, okay, assign automatically the next available value to that field.
+
+36
+00:04:18,000 --> 00:04:26,000
+There are fields that are probably more interesting. So we will have a name field of type, let's say, VARCHAR.
+
+37
+00:04:26,000 --> 00:04:30,000
+How long can the name be? Let's just say 20 characters, it could be more it could be less.
+
+38
+00:04:30,000 --> 00:04:38,000
+We have a gender field, which well, essentially could hold another data type since we only have two genders
+
+39
+00:04:38,000 --> 00:04:45,000
+in our form, let's just stick with the VARCHAR of length 1, and we of course have our favorite color,
+
+40
+00:04:45,000 --> 00:04:51,000
+which is also VARCHAR. It might be a little bit longer. So that's the basic setup.
+
+41
+00:04:51,000 --> 00:05:00,000
+We have a table, users, with an id, a name, a gender, and a color, and we'll save that, and the database is now
+
+42
+00:05:00,000 --> 00:05:07,000
+prepared for our next steps. So we could browse the database. Of course, there is no data within the
+
+43
+00:05:07,000 --> 00:05:15,000
+database yet, so we could add data to the database. We could run SQL statements, we could create an index,
+
+44
+00:05:15,000 --> 00:05:22,000
+a lot of things, and most of the MySQL features are directly mapped into a feature in phpMyAdmin, so it's a
+
+45
+00:05:22,000 --> 00:05:28,000
+very, very convenient tool, but we'll now leave that convenient tool and write a tool of our own, because
+
+46
+00:05:28,000 --> 00:59:00,000
+we'll now use our own PHP code to talk to the database.
+

@@ -1,0 +1,132 @@
+1
+00:00:02,000 --> 00:00:10,000
+The form works pretty nicely, however, we have made something really, really bad, because we have kind of
+
+2
+00:00:10,000 --> 00:00:17,000
+trusted user input. We have taken the data being entered into the form and we have just output the data and
+
+3
+00:00:17,000 --> 00:00:22,000
+sent it back to the browser. However, user input is not trustworthy.
+
+4
+00:00:22,000 --> 00:00:29,000
+I mean so far we were the only users, and we should trust ourselves, but all other visitors of our website
+
+5
+00:00:29,000 --> 00:00:35,000
+or users or our web application probably should not be considered trustworthy.
+
+6
+00:00:35,000 --> 00:00:43,000
+The problem is that the input, in our case, might contain HTML, so if we output the input, then we add HTML
+
+7
+00:00:43,000 --> 00:00:54,000
+to our page and there are some aspects of HTML, or features of HTML, that we might not want people entering
+
+8
+00:00:54,000 --> 00:00:59,000
+on our page, for instance, JavaScript. There are a lot of attacks that can be done with JavaScript.
+
+9
+00:00:59,000 --> 00:01:07,000
+The specific attack is called cross-site scripting, and we need to avoid this, which we do not do yet.
+
+10
+00:01:07,000 --> 00:01:17,000
+The htmlspecialchars function is built into PHP and it takes care of exactly the attack I mentioned of
+
+11
+00:01:17,000 --> 00:01:25,000
+HTML special characters in the input. So whenever we output data and send it back to the browser, and the
+
+12
+00:01:25,000 --> 00:01:33,000
+data we output comes from the user, thus is not trustworthy, we first need to run, for instance,
+
+13
+00:01:33,000 --> 00:01:42,000
+htmlspecialchars over the data being sent to the browser because it takes care of HTML special characters.
+
+14
+00:01:42,000 --> 00:01:51,000
+By default, htmlspecialchars takes care of four characters, angle brackets, opening and closing, double
+
+15
+00:01:51,000 --> 00:01:59,000
+quotes, and the ampersand character. These are four of the five special characters HTML offers, so if you
+
+16
+00:01:59,000 --> 00:02:05,000
+escape them properly we're all good as long as we output HTMl. There is a fifth one, the single quote.
+
+17
+00:02:05,000 --> 00:02:12,000
+By default, this is not escaped, also has _____reasons, however, if you use htmlspecialchars, and the first argument is
+
+18
+00:02:12,000 --> 00:02:19,000
+the string we'd like to escape, if you use the constant and _QUOTES as the second one, we would also
+
+19
+00:02:19,000 --> 00:02:23,000
+escape the single quotes, just to make it a little bit better.
+
+20
+00:02:23,000 --> 00:02:30,000
+Now, let's implement this in our HTML form code.
+
+21
+00:02:30,000 --> 00:02:38,000
+Actually it's pretty easy, at least in this state of our application we just run htmlspecialchars whenever
+
+22
+00:02:38,000 --> 00:02:45,000
+we refer to the data and output it. We could use end quotes as an argument in order to also escape single
+
+23
+00:02:45,000 --> 00:02:51,000
+quotes. We do not need this in our example because we are not using any single quotes in our HTML markup,
+
+24
+00:02:51,000 --> 00:03:04,000
+so this works well enough, and all I need to do is _____ output or well, copy, paste it actually, around
+
+25
+00:03:04,000 --> 00:03:11,000
+all the other values here, so we have the color. We can also put htmlspecialchars around the return value
+
+26
+00:03:11,000 --> 00:03:20,000
+of implode. We use it here, we use it here. We could also get rid of the extra unneeded comma in the
+
+27
+00:03:20,000 --> 00:03:29,000
+output string. Well, and basically that's it, now we've added some security to our form.
+
+28
+00:03:29,000 --> 00:03:39,000
+Let's try this in the browser. We have a user name, we have a topsecret password, a gender, color, some
+
+29
+00:03:39,000 --> 00:03:47,000
+languages, and then I tried to inject some HTML in the Comments, so This is a &lt;i&gt;testK&lt;/i&gt;.
+
+30
+00:03:47,000 --> 00:03:55,000
+I do not try to inject JavaScript here, just some random HTML. Still bad, but in the output we do get the
+
+31
+00:03:55,000 --> 00:04:03,000
+actual markup but the text doesn't show up as italic, so we've avoided the attack, and so we are pretty good
+
+32
+00:04:03,000 --> 00:04:10,000
+at this state. We have now processed all of the form data, so as long as we fill out the form completely,
+
+33
+00:04:10,000 --> 00:59:00,000
+we are good. If not, we'll have some extra work to do.
+

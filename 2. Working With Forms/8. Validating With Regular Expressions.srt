@@ -1,0 +1,92 @@
+1
+00:00:02,000 --> 00:00:10,000
+So far our validation has been pretty simplistic. We just check if there is anything being sent from the
+
+2
+00:00:10,000 --> 00:00:20,000
+browser to us. Of course, we can have a much closer look at the data that's sent to PHP.
+
+3
+00:00:20,000 --> 00:00:29,000
+We could look if input has the right format or if there was a field, let's say, date of birth, if it's really
+
+4
+00:00:29,000 --> 00:00:36,000
+a date, and there are various ways of checking the input. The most complex and of course most famous and
+
+5
+00:00:36,000 --> 00:00:43,000
+most powerful one is using regular expressions. So you can provide an expression that just gives us a
+
+6
+00:00:43,000 --> 00:00:49,000
+kind of format how the input should look like, so in that case we have a regular expression that checks for
+
+7
+00:00:49,000 --> 00:00:56,000
+at the beginning of the string, a couple of characters and % character, and then again a couple of characters,
+
+8
+00:00:56,000 --> 00:01:02,000
+and maybe a dot and so on and so forth, that's an email address essentially, and we can check whether that
+
+9
+00:01:02,000 --> 00:01:11,000
+email address pattern fits to the input we receive. The function we can use there is called preg_match.
+
+10
+00:01:11,000 --> 00:01:18,000
+preg stands for Perl Compatible Regular Expressions because PHP supports the Perl syntax, which is kind of
+
+11
+00:01:18,000 --> 00:01:24,000
+an industry standard, and all the preg_ something functions take care of regular expressions.
+
+12
+00:01:24,000 --> 00:01:34,000
+It's built in to PHP. preg_match expects a regular expression, and the input and then, well, returns the
+
+13
+00:01:34,000 --> 00:01:44,000
+matches, so how often does the input contain the search pattern. The catch is, preg_match stops after the
+
+14
+00:01:44,000 --> 00:01:52,000
+first match, so the return value of preg_match is either 0 or 1. Now since 0 converted to a Boolean is
+
+15
+00:01:52,000 --> 00:01:58,000
+false, and 1 converted to a Boolean is true, we could just do, if not, preg_match, and well, if there is no
+
+16
+00:01:58,000 --> 00:02:05,000
+match, then we have an error if we have a match, of course, and there is no error, and so we can amend our
+
+17
+00:02:05,000 --> 00:02:12,000
+validation rules and as I already mentioned, we could also provide a detailed error message telling user
+
+18
+00:02:12,000 --> 00:02:20,000
+what's wrong, but well, so far we know the basics of validating form data, and the only thing remaining is
+
+19
+00:02:20,000 --> 00:02:31,000
+that we need to amend the usability of our form, because as you can see in the browser, all the input is gone,
+
+20
+00:02:31,000 --> 00:02:39,000
+even if you had a mistake. So if you go back in the browser and, well, we just make an error, so the password
+
+21
+00:02:39,000 --> 00:02:46,000
+field is never stored by the browser. We submit again, well, we do not get an error message, but we know
+
+22
+00:02:46,000 --> 00:02:54,000
+that there is an error. However, all the valid input is gone too, and we need to fix that, but this requires
+
+23
+00:02:54,000 --> 00:59:00,000
+some more coding effort on our part.
+
